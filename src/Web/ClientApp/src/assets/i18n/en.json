@@ -1,0 +1,39 @@
+{
+  "HEADER":{
+    "SEARCH": {
+      "TEXT": "Search.."
+    }
+  },
+  "MENUITEMS": {
+    "USER":{
+      "POST": "Manager"
+    },
+    "MAIN": {
+      "TEXT": "-- Main"
+    },
+    "ADMIN": {
+      "TEXT": "Admin",
+      "LIST": {
+        "TEACHERS": "Teachers",
+        "STUDENTS": "Students",
+        "SUBJECT": "Subject",
+        "GRADES": "Grades",
+        "CLASSES": "Classes",
+        "EXCEL_UPLOAD": "Excel Upload"
+      }
+    },
+    "TEACHER_LESSON": {
+      "TEXT": "Teacher Lessons",
+      "LIST": {
+        "LESSON_IN_DESIGN": "Lessons in Design"
+      }
+    },
+    "ATTENDANCE": {
+      "TEXT": "Attendance",
+      "LIST": {
+        "MYATTENDANCE": "My Attendance",
+        "MYREPORT": "Attendance Reports"
+      }
+    }
+  }
+}

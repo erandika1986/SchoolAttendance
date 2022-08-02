@@ -1,0 +1,202 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Admin</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/admin/teacher"> <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Grades</li>
+  </ul>
+  <div class="section-body">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="p-10">
+            <div class="row">
+              <div class="col-12">
+                <div class="row m-0">
+                  <div class="col-12 p-0">
+                    <div class="ngxTableHeader">
+                      <div class="table-title">
+                        <h2><strong>Grades</strong></h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p-table
+                  [value]="data"
+                  [lazy]="true"
+                  (onLazyLoad)="loadLessons($event)"
+                  [paginator]="true"
+                  [rows]="pageSize"
+                  [totalRecords]="totalRecord"
+                  [loading]="loading"
+                  [responsive]="true"
+                  styleClass="p-datatable-striped"
+                >
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Level Head Name</th>
+                      <th>Subjects</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-rowIndex="rowIndex"
+                  >
+                    <tr>
+                      <td>
+                        <span>
+                          <button
+                            class="btn btn-icon btn-sm btn-primary ms-1"
+                            (click)="editRow(rowData, rowIndex, addEditRecord)"
+                          >
+                            <i class="fas fa-pen"></i>
+                          </button>
+                        </span>
+                      </td>
+                      <td>
+                        {{ rowData.name }}
+                      </td>
+                      <td>
+                        {{ rowData.levelHeadName }}
+                      </td>
+                      <td>
+                        {{ rowData.gradeSubjectsText }}
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+
+            <!-- Edit Record Modal Window -->
+            <ng-template #addEditRecord let-modal>
+              <div class="modal-header editRowModal">
+                <h4 class="modal-title" id="modal-basic-title">
+                  <div class="table-modal-header">
+                    <div class="modal-about">
+                      <div class="fw-bold p-t-10 font-17">
+                        {{ selectedRowData?.name }}
+                      </div>
+                    </div>
+                  </div>
+                </h4>
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true"
+                    ><i class="material-icons">close</i></span
+                  >
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="gradeForm" (ngSubmit)="save()">
+                  <div class="input-field col s12 d-none">
+                    <input
+                      formControlName="id"
+                      class="form-control"
+                      type="hidden"
+                    />
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label>Name <span class="text-danger">*</span></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Name"
+                        formControlName="name"
+                        required
+                      />
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="
+                          !gradeForm.get('name').valid &&
+                          gradeForm.get('name').touched
+                        "
+                      >
+                        Grade name is required</small
+                      >
+                    </div>
+
+                    <div class="col-6">
+                      <label for="gradeSubjects"
+                        >Grade Subjects
+                        <span class="text-danger">*</span></label
+                      >
+                      <p-multiSelect
+                        [options]="subjects"
+                        id="gradeSubjects"
+                        [style]="{ width: '100%' }"
+                        formControlName="gradeSubjects"
+                        optionLabel="name"
+                        optionValue="id"
+                        display="chip"
+                      ></p-multiSelect>
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="
+                          !gradeForm.get('gradeSubjects').valid &&
+                          gradeForm.get('gradeSubjects').touched
+                        "
+                      >
+                        Grade Subjects is required</small
+                      >
+                    </div>
+
+                    <div class="col-6">
+                      <label
+                        >Grade Head <span class="text-danger">*</span></label
+                      >
+                      <select
+                        class="form-select form-control"
+                        formControlName="levelHeadId"
+                      >
+                        <option
+                          [ngValue]="item.id"
+                          *ngFor="let item of teachers"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      [disabled]="!gradeForm.valid"
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      (click)="modal.close()"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

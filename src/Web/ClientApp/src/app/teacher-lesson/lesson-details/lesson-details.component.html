@@ -1,0 +1,288 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Lesson Details</h4>
+    <div class="card-header-action">
+      <!--       <button
+        pButton
+        type="button"
+        icon="pi pi-save"
+        class="p-button-sm"
+        style="width: 48px; height: 48px"
+      ></button> -->
+
+      <!--       <button
+        pButton
+        pRipple
+        class="p-button-raised p-button-text"
+        class="p-button-outlined"
+        placement="bottom"
+        ngbTooltip="Save lesson detail"
+        [disabled]="!basicLessonForm.dirty && basicLessonForm.valid"
+        (click)="saveLessonDetails()"
+      >
+        <span
+          ><img
+            src="../../../assets//images/save-icon.png"
+            style="width: 32px; height: 32px"
+        /></span>
+      </button> -->
+
+      <button
+        pButton
+        pRipple
+        icon="pi pi-save"
+        type="button"
+        class="p-button-lg p-button-success m-2"
+        label="Save"
+        placement="bottom"
+        ngbTooltip="Save lesson detail"
+        [disabled]="!basicLessonForm.dirty && basicLessonForm.valid"
+        (click)="saveLessonDetails()"
+      ></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off" [formGroup]="basicLessonForm">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group position-relative">
+              <label>Lesson Name<span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Enter lesson name"
+                name="txtLessonName"
+                required=""
+              />
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('name').valid &&
+                  basicLessonForm.get('name').touched
+                "
+                >Please enter a Lesson name!</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group position-relative">
+              <label
+                >Lesson Introduction<span class="text-danger">*</span></label
+              >
+              <textarea
+                class="form-control"
+                formControlName="lessonIntroduction"
+                placeholder="Enter Lesson Introduction"
+                name="txtLessonIntroduction"
+                required=""
+              ></textarea>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('lessonIntroduction').valid &&
+                  basicLessonForm.get('lessonIntroduction').touched
+                "
+                >Please enter a lesson introduction!</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group position-relative">
+              <label>Lesson Competency Level</label>
+              <textarea
+                class="form-control"
+                formControlName="competencyLevel"
+                placeholder="Enter Lesson Competency Level"
+                name="txtCompetencyLevel"
+                required=""
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label>Academic Year<span class="text-danger">*</span></label>
+              <select
+                class="form-select form-control"
+                formControlName="academicYearId"
+                (change)="onAcademicYearFilterChanged($event.target.value)"
+              >
+                <option *ngFor="let item of academicYears" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('academicYearId').valid &&
+                  basicLessonForm.get('academicYearId').touched
+                "
+                >Please select the academic year!</small
+              >
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label>Grade<span class="text-danger">*</span></label>
+              <select
+                class="form-select form-control"
+                formControlName="gradeId"
+                (change)="onGradeFilterChanged($event.target.value)"
+                required
+              >
+                <option *ngFor="let item of grades" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('gradeId').valid &&
+                  basicLessonForm.get('gradeId').touched
+                "
+                >Please select the grade!</small
+              >
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label>Subject<span class="text-danger">*</span></label>
+              <select
+                class="form-select form-control"
+                formControlName="subjectId"
+                (change)="onSubjectFilterChanged($event.target.value)"
+              >
+                <option *ngFor="let item of subjects" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('subjectId').valid &&
+                  basicLessonForm.get('subjectId').touched
+                "
+                >Please select the subject!</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label for="assignedTeacherClass"
+                >Classes<span class="text-danger">*</span></label
+              >
+              <p-multiSelect
+                [options]="classes"
+                id="assignedTeacherClass"
+                [style]="{ width: '100%' }"
+                formControlName="assignedClasses"
+                optionLabel="name"
+                optionValue="id"
+                display="chip"
+              ></p-multiSelect>
+
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('assignedClasses').valid &&
+                  basicLessonForm.get('assignedClasses').touched
+                "
+                >Please select the classes to assign the lesson!</small
+              >
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label>Status<span class="text-danger">*</span></label>
+              <select
+                class="form-select form-control"
+                formControlName="lessonStatus"
+              >
+                <option *ngFor="let item of lessonStatuses" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </select>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('lessonStatus').valid &&
+                  basicLessonForm.get('lessonStatus').touched
+                "
+                >Please select the lesson status!</small
+              >
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label for="assignedTeacherClass"
+                >Teaching Aids<span class="text-danger">*</span></label
+              >
+              <p-multiSelect
+                [options]="teacherAids"
+                id="assignedTeacherClass"
+                [style]="{ width: '100%' }"
+                formControlName="teacherAids"
+                optionLabel="name"
+                optionValue="id"
+                display="chip"
+              ></p-multiSelect>
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !basicLessonForm.get('teacherAids').valid &&
+                  basicLessonForm.get('teacherAids').touched
+                "
+                >Please select the teacher Aids!</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label class="d-block">Has Lesson Test</label>
+              <div class="form-check">
+                <p-checkbox
+                  [formControl]="basicLessonForm.controls['hasLessonTest']"
+                  binary="true"
+                  inputId="binary"
+                  (onChange)="
+                    hasLessonTestChange(
+                      basicLessonForm.controls['hasLessonTest'].value
+                    )
+                  "
+                ></p-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label for="assignedTeacherClass">Teaching Process</label>
+              <p-editor
+                formControlName="teachingProcess"
+                [style]="{ height: '320px' }"
+              ></p-editor>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

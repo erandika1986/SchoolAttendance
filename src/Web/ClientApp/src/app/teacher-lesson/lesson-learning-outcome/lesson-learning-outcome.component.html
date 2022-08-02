@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header">
+    <h4>What will students learn in your lesson?</h4>
+    <div class="card-header-action">
+      <!--       <button
+        pButton
+        type="button"
+        icon="pi pi-save"
+        class="p-button-sm"
+        style="width: 48px; height: 48px"
+      ></button> -->
+      <!--       <button
+        pButton
+        pRipple
+        class="p-button-raised p-button-text"
+        class="p-button-outlined"
+        placement="bottom"
+        ngbTooltip="Save lesson learning outcome"
+        [disabled]="!lessonOutcomeForm.dirty && lessonOutcomeForm.valid"
+        (click)="saveLessonLearningOutcomes()"
+      >
+        <span
+          ><img
+            src="../../../assets//images/save-icon.png"
+            style="width: 32px; height: 32px; margin: 2px"
+        /></span>
+      </button> -->
+
+      <button
+        pButton
+        pRipple
+        icon="pi pi-save"
+        type="button"
+        class="p-button-lg p-button-success m-2"
+        label="Save"
+        placement="bottom"
+        ngbTooltip="Save lesson learning outcome"
+        [disabled]="!lessonOutcomeForm.dirty && lessonOutcomeForm.valid"
+        (click)="saveLessonLearningOutcomes()"
+      ></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <form [formGroup]="lessonOutcomeForm">
+        <div class="row">
+          <div class="col-12 mb-2">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-plus"
+              type="button"
+              label="Add Lesson Outcome"
+              class="p-button"
+              (click)="addNewLessonOutcome()"
+              placement="bottom"
+              ngbTooltip="Add new lesson outcome"
+            ></button>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <p-table
+            [value]="lessonOutcomes.controls"
+            [responsive]="true"
+            [rowTrackBy]="trackByFn"
+            styleClass="p-datatable-striped"
+          >
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <ng-container formArrayName="lessonOutcomes">
+                <tr [formGroupName]="rowIndex">
+                  <td style="width: 50px !important">
+                    {{ rowIndex + 1 }}
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="lessonOutcome"
+                    />
+                    <small
+                      class="form-text text-danger"
+                      *ngIf="
+                        !rowData.get('lessonOutcome').valid &&
+                        rowData.get('lessonOutcome').touched
+                      "
+                      >Please Insert the learning outcome here!</small
+                    >
+                  </td>
+                  <td style="width: 70px !important">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-times"
+                      class="p-button-rounded p-button-danger p-button-outlined"
+                      (click)="onDeleteLessonOutcome(rowIndex)"
+                      placement="bottom"
+                      ngbTooltip="Delete lesson outcome"
+                    ></button>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-template>
+          </p-table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

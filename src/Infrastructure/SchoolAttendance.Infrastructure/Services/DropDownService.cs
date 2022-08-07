@@ -95,8 +95,8 @@ namespace SchoolAttendance.Infrastructure.Services
 
       var roles = loggedInUser.UserRoles.Select(x => x.RoleId).ToList();
 
-      var allClasses = db.Grades.AsEnumerable().Where(g => g.IsActive == true && g.Id == gradeId)
-        .SelectMany(cl => cl.Classes).Where(t => t.AcademicYear == academicYear);
+      var allClasses = db.Grades.Where(g => g.IsActive == true && g.Id == gradeId)
+        .SelectMany(cl => cl.Classes).Where(t => t.AcademicYear == academicYear).ToList();
 
       if (!roles.Contains((int)SystemRole.Teacher))
       {

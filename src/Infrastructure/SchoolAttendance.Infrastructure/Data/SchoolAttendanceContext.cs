@@ -78,7 +78,7 @@ namespace SchoolAttendance.Infrastructure.Data
         public virtual DbSet<QuestionMcqteacherAnswer> QuestionMcqteacherAnswers => Set<QuestionMcqteacherAnswer>();
         public virtual DbSet<QuestionOpenEndedTeacherAnswer> QuestionOpenEndedTeacherAnswers => Set<QuestionOpenEndedTeacherAnswer>();
         public virtual DbSet<QuestionStructured> QuestionStructureds => Set<QuestionStructured>();
-        public virtual DbSet<QuestionTructuredTeacherAnswer> QuestionTructuredTeacherAnswers => Set<QuestionTructuredTeacherAnswer>();
+        public virtual DbSet<QuestionStructuredTeacherAnswer> QuestionTructuredTeacherAnswers => Set<QuestionStructuredTeacherAnswer>();
         public virtual DbSet<QuestionType> QuestionTypes => Set<QuestionType>();
         public virtual DbSet<Role> Roles => Set<Role>();
         public virtual DbSet<StudentAssessmentScore> StudentAssessmentScores => Set<StudentAssessmentScore>();

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Infrastructure.Data.Configurations
 {
-    public class QuestionTructuredTeacherAnswerConfiguration : IEntityTypeConfiguration<QuestionTructuredTeacherAnswer>
+    public class QuestionTructuredTeacherAnswerConfiguration : IEntityTypeConfiguration<QuestionStructuredTeacherAnswer>
     {
-        public void Configure(EntityTypeBuilder<QuestionTructuredTeacherAnswer> builder)
+        public void Configure(EntityTypeBuilder<QuestionStructuredTeacherAnswer> builder)
         {
             builder.ToTable("QuestionTructuredTeacherAnswer");
 

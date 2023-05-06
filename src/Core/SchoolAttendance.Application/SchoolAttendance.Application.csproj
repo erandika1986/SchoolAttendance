@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Security\" />
+    <Folder Include="Pipelines\Assessment\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -48,7 +48,7 @@ namespace SchoolAttendance.Application.Common.Interfaces
         DbSet<QuestionMcqteacherAnswer> QuestionMcqteacherAnswers { get; }
         DbSet<QuestionOpenEndedTeacherAnswer> QuestionOpenEndedTeacherAnswers { get; }
         DbSet<QuestionStructured> QuestionStructureds { get; }
-        DbSet<QuestionTructuredTeacherAnswer> QuestionTructuredTeacherAnswers { get; }
+        DbSet<QuestionStructuredTeacherAnswer> QuestionTructuredTeacherAnswers { get; }
         DbSet<QuestionType> QuestionTypes { get; }
         DbSet<Role> Roles { get; }
         DbSet<StudentAssessmentScore> StudentAssessmentScores { get; }

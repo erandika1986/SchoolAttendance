@@ -33,8 +33,4 @@
     <ProjectReference Include="..\..\Core\SchoolAttendance.Application\SchoolAttendance.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Queries\Base\" />
-  </ItemGroup>
-
 </Project>

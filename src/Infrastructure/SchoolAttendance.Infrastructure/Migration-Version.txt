@@ -1,4 +1,4 @@
-﻿Enable-Migrations -Project JobApp.Infrastructure -StartUp JobApp.WebUI -Verbose
+﻿Enable-Migrations -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebUI -Verbose
 Add-Migration JobApp00001 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
 
 

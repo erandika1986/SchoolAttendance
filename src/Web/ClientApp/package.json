@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@agm/core": "^1.1.0",
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "^15.0.3",
     "@angular/cdk": "^15.0.2",
     "@angular/common": "^15.0.3",
@@ -59,7 +59,7 @@
     "ng2-charts": "^2.4.2",
     "ng2-dragula": "^2.1.1",
     "ngx-color-picker": "^11.0.0",
-    "ngx-custom-validators": "8.0.0",
+    "ngx-custom-validators": "^11.0.1",
     "ngx-dropzone-wrapper": "^13.0.0",
     "ngx-echarts": "^15.0.1",
     "ngx-gauge": "^6.0.0",

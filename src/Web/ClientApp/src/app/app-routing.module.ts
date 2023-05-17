@@ -23,86 +23,11 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'calendar',
-        loadChildren: () =>
-          import('./calendar/calendar.module').then((m) => m.CalendarsModule),
-      },
-      {
-        path: 'apps',
-        loadChildren: () =>
-          import('./apps/apps.module').then((m) => m.AppsModule),
-      },
-      {
-        path: 'email',
-        loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule),
-      },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./forms/forms.module').then((m) => m.FormsModule),
-      },
-      {
-        path: 'charts',
-        loadChildren: () =>
-          import('./charts/charts.module').then((m) => m.ChartsModule),
-      },
-      {
-        path: 'tables',
-        loadChildren: () =>
-          import('./tables/tables.module').then((m) => m.TablesModule),
-      },
-      {
-        path: 'data-tables',
-        loadChildren: () =>
-          import('./data-tables/data-tables.module').then(
-            (m) => m.DataTablesModule
-          ),
-      },
-      {
-        path: 'data-tables',
-        loadChildren: () =>
-          import('./data-tables/data-tables.module').then(
-            (m) => m.DataTablesModule
-          ),
-      },
-      {
-        path: 'ui',
-        loadChildren: () => import('./ui/ui.module').then((m) => m.UiModule),
-      },
-      {
-        path: 'media',
-        loadChildren: () =>
-          import('./media/media.module').then((m) => m.MediaModule),
-      },
-      {
-        path: 'widget',
-        loadChildren: () =>
-          import('./widget/widget.module').then((m) => m.WidgetModule),
-      },
-      {
-        path: 'advanced',
-        loadChildren: () =>
-          import('./advanced-component/advanced-component.module').then(
-            (m) => m.AdvancedComponentModule
-          ),
-      },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./icons/icons.module').then((m) => m.IconsModule),
-      },
-      {
         path: 'extra-pages',
         loadChildren: () =>
           import('./extra-pages/extra-pages.module').then(
             (m) => m.ExtraPagesModule
           ),
-      },
-      {
-        path: 'maps',
-        loadChildren: () =>
-          import('./maps/maps.module').then((m) => m.MapsModule),
       },
       {
         path: 'multilevel',

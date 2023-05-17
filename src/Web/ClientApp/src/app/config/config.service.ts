@@ -14,11 +14,11 @@ export class ConfigService {
   setConfigData() {
     this.configData = {
       layout: {
-        variant: 'light', // options:  light & dark
-        theme_color: 'white', // options:  white, cyan, black, purple, orange, green, red
+        variant: 'dark', // options:  light & dark
+        theme_color: 'purple', // options:  white, cyan, black, purple, orange, green, red
         sidebar: {
           collapsed: false, // options:  true & false
-          backgroundColor: 'light', // options:  light & dark
+          backgroundColor: 'dark', // options:  light & dark
         },
       },
     };

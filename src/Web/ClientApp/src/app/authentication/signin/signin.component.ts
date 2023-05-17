@@ -1,27 +1,29 @@
-import { AuthService } from 'src/app/core/service/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
-  loginForm: UntypedFormGroup;
+  loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
   error = '';
   hide = true;
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private authService: AuthService
   ) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['admin@email.com', Validators.required],
-      password: ['admin@123', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
   get f() {
@@ -35,20 +37,23 @@ export class SigninComponent implements OnInit {
       this.error = 'Username and Password not valid !';
       return;
     } else {
+      this.spinner.show();
       this.authService
-        .login(this.f["username"].value, this.f["password"].value)
+        .login(this.loginForm.getRawValue())
         .subscribe(
           (res) => {
+            this.spinner.hide();
             if (res) {
               const token = this.authService.currentUserValue.token;
               if (token) {
-                this.router.navigate(['/dashboard/main']);
+                this.router.navigate(['/admin']);
               }
             } else {
               this.error = 'Invalid Login';
             }
           },
           (error) => {
+            this.spinner.hide();
             this.error = error;
             this.submitted = false;
           }

@@ -19,7 +19,7 @@
     "@angular/core": "^16.0.1",
     "@angular/forms": "^16.0.1",
     "@angular/localize": "^16.0.1",
-    "@angular/material": "^15.0.2",
+    "@angular/material": "^16.0.1",
     "@angular/platform-browser": "^16.0.1",
     "@angular/platform-browser-dynamic": "^16.0.1",
     "@angular/router": "^16.0.1",
@@ -65,7 +65,7 @@
     "ngx-gauge": "^6.0.0",
     "ngx-mask": "^14.2.4",
     "ngx-material-file-input": "^3.0.0",
-    "ngx-perfect-scrollbar": "^10.1.1",
+    "ngx-scrollbar": "^11.0.0",
     "ngx-toastr": "^16.0.1",
     "rxjs": "^7.5.7",
     "sweetalert2": "^11.6.15",
@@ -73,8 +73,8 @@
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^15.0.3",
-    "@angular/cli": "^15.0.3",
+    "@angular-devkit/build-angular": "^16.0.1",
+    "@angular/cli": "^16.0.1",
     "@angular/compiler-cli": "^16.0.1",
     "@angular/language-service": "^16.0.1",
     "@types/jasmine": "~4.3.0",

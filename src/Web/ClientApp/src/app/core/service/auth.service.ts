@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
-import { LoginModel} from '../../models/common/login.model'
 
 @Injectable({
   providedIn: 'root',
@@ -24,16 +23,19 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(login:LoginModel) {
+  login(username: string, password: string) {
     return this.http
-      .post<any>(`${environment.apiUrl}Auth/login`, login)
+      .post<any>(`${environment.apiUrl}/authenticate`, {
+        username,
+        password,
+      })
       .pipe(
-        map((response) => {
+        map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-           console.log(JSON.stringify(response));
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          this.currentUserSubject.next(response);
-          return response;
+          // console.log(JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
         })
       );
   }

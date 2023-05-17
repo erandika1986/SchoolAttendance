@@ -103,8 +103,13 @@
             }
           }
         }
+        &.active-top {
+          .menu-top {
+            background-color: #f0f3fb;
+          }
+        }
 
-        ul.ml-menu {
+        .ml-menu {
           li {
             a:before {
               content: '\f105';
@@ -119,6 +124,29 @@
             a:hover:before {
               font-weight: 600;
               left: 30px;
+            }
+          }
+          .ml-menu-2 {
+            li {
+              a:before {
+                left: 50px;
+              }
+              a:hover:before {
+                font-weight: 600;
+                left: 53px;
+              }
+            }
+          }
+
+          .ml-menu-3 {
+            li {
+              a:before {
+                left: 65px;
+              }
+              a:hover:before {
+                font-weight: 600;
+                left: 68px;
+              }
             }
           }
         }
@@ -182,6 +210,12 @@
         .ml-sub-menu {
           display: block;
         }
+        .ml-sub-menu2 {
+          display: block;
+        }
+        .ml-sub-menu3 {
+          display: block;
+        }
       }
 
       .menu-toggle {
@@ -231,6 +265,49 @@
           // @include transform(scale(0));
           @include transition(all 0.3s);
         }
+      }
+
+      li:not(.active) {
+        .ml-sub-menu {
+          &:after {
+            content: '+';
+            // @include transform(scale(1));
+          }
+        }
+      }
+      li:not(.active) {
+        .ml-sub-menu2 {
+          &:after {
+            content: '+';
+            // @include transform(scale(1));
+          }
+        }
+      }
+
+      .ml-sub-menu2 {
+        &:after {
+          position: absolute;
+          top: calc(50% - 19px);
+          right: 17px;
+          font-size: 19px;
+          // @include transform(scale(0));
+          @include transition(all 0.3s);
+        }
+
+        &:before {
+          content: '\2013';
+        }
+      }
+
+      .ml-sub-menu3 {
+        &:after {
+          position: absolute;
+          top: calc(50% - 19px);
+          right: 17px;
+          font-size: 19px;
+          // @include transform(scale(0));
+          @include transition(all 0.3s);
+        }
 
         &:before {
           content: '\2013';
@@ -240,17 +317,6 @@
         &:after {
           content: '+';
           // @include transform(scale(1));
-        }
-      }
-
-      .activeSub .ml-sub-menu {
-        // &:before {
-        //   @include transform(scale(0));
-        // }
-
-        &:after {
-          content: '\2013';
-          // @include transform(scale(0));
         }
       }
 
@@ -277,11 +343,10 @@
 
         span {
           margin: 7px 0 7px 12px;
-          color: #333;
           font-size: 14px;
           overflow: hidden;
           letter-spacing: 0.3px;
-          color: #60686f;
+          color: #484848;
           font-weight: 600;
         }
       }
@@ -299,7 +364,7 @@
 
         li {
           a {
-            padding-left: 43px;
+            padding-left: 49px;
             padding-top: 4px;
             padding-bottom: 4px;
           }
@@ -404,9 +469,54 @@
             padding-top: 4px;
             padding-bottom: 4px;
             &:before {
-              left: 50px !important;
+              left: 50px;
             }
           }
+        }
+        li.active .ml-menu-3 {
+          display: block;
+        }
+        li.active .ml-menu2:before {
+          content: '\f105';
+          font-family: 'Font Awesome 5 Free';
+          font-size: 13px;
+          display: block;
+          width: 7px;
+          height: 7px;
+          position: absolute;
+          left: 20%;
+          font-weight: 900;
+          top: calc(50% - 15px);
+        }
+      }
+      .ml-menu-3 {
+        list-style: none;
+        display: none;
+        padding-left: 0;
+
+        span {
+          font-weight: normal;
+          font-size: 14px;
+          margin: 3px 0 1px 6px;
+        }
+
+        li {
+          a {
+            padding-left: 80px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+          }
+        }
+        li.active .ml-menu3:before {
+          content: '\f105';
+          font-family: 'Font Awesome 5 Free';
+          font-size: 13px;
+          display: block;
+          width: 7px;
+          height: 7px;
+          position: absolute;
+          font-weight: 900;
+          top: calc(50% - 15px);
         }
       }
     }
@@ -421,6 +531,81 @@
     font-size: 12px !important;
     border: none;
     font-weight: 300 !important;
+  }
+}
+
+.ml-menu {
+  .ml-sub-menu {
+    &:before {
+      @include transform(scale(0));
+    }
+    &:after {
+      @include transform(scale(1));
+    }
+  }
+
+  .ml-sub-menu2 {
+    &:before {
+      @include transform(scale(1));
+    }
+    &:after {
+      @include transform(scale(0));
+    }
+  }
+
+  .ml-sub-menu3 {
+    &:before {
+      @include transform(scale(1));
+    }
+    &:after {
+      @include transform(scale(0));
+    }
+  }
+
+  .active .ml-sub-menu {
+    &:after {
+      content: '\2013';
+      @include transform(scale(1));
+    }
+
+    &:before {
+      @include transform(scale(0));
+    }
+  }
+
+  .active .ml-sub-menu2 {
+    &:after {
+      content: '\2013';
+      @include transform(scale(1));
+    }
+
+    &:before {
+      @include transform(scale(0));
+    }
+  }
+
+  .ml-menu-2 {
+    li.active .ml-sub-menu2 {
+      &:after {
+        @include transform(scale(1));
+      }
+
+      &:before {
+        @include transform(scale(0));
+      }
+    }
+  }
+
+  .ml-menu-3 {
+    li.active .ml-sub-menu3 {
+      &:after {
+        @include transform(scale(1));
+      }
+
+      &:before {
+        @include transform(scale(0));
+      }
+    }
   }
 }
 
@@ -667,6 +852,11 @@
 
     li {
       &.active {
+        .menu-top {
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+      }
+      &.active-top {
         .menu-top {
           background-color: rgba(0, 0, 0, 0.4);
         }

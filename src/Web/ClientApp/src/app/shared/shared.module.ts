@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IconsModule } from './feather-icons.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [],
@@ -13,7 +12,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxSpinnerModule,
     IconsModule,
     BootstrapModule,
   ],
@@ -22,7 +20,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxSpinnerModule,
     IconsModule,
     BootstrapModule,
   ],

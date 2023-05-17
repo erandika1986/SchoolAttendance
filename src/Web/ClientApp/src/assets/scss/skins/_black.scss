@@ -168,12 +168,13 @@ $color-primary-light: #16192a;
 
     .form-inline {
       .form-control {
-        background-color: #0e0e0e !important;
-        color: #96a2b4;
+        background-color: #000000 !important;
+        color: #ffffff;
+        border-color: #000000 !important;
       }
 
       .btn {
-        background-color: #0e0e0e !important;
+        background-color: #000000 !important;
 
         i {
           color: #96a2b4;
@@ -312,8 +313,6 @@ $color-primary-light: #16192a;
   }
 
   .settingSidebar .settingPanelToggle {
-    background: $color-primary;
-
     i {
       color: #fff;
     }

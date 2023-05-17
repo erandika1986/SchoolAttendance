@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.sass'],
 })
 export class SignupComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   submitted = false;
   error = '';
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       fname: ['', Validators.required],

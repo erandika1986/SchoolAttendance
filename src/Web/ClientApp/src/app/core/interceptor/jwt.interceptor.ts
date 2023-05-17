@@ -18,9 +18,6 @@ export class JwtInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // add authorization header with jwt token if available
     let currentUser = this.authenticationService.currentUserValue;
-    console.log('====================================');
-    console.log(currentUser);
-    console.log('====================================');
     if (currentUser && currentUser.token) {
       request = request.clone({
         setHeaders: {
@@ -28,13 +25,6 @@ export class JwtInterceptor implements HttpInterceptor {
         },
       });
     }
-
-    if (request.headers.get('filedownload') !== null) {
-      request = request.clone({
-        setHeaders: { Authorization: `Bearer ${currentUser.token}` },
-        responseType: 'blob' as 'json'
-    });
-    } 
 
     return next.handle(request);
   }

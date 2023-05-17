@@ -12,9 +12,41 @@
       left: 17px;
       right: unset;
     }
-    .ml-menu li a {
-      padding-right: 50px;
-      padding-left: 0px;
+    .ml-menu {
+      li a {
+        padding-right: 50px;
+        padding-left: 0px;
+      }
+      .ml-menu-2 {
+        padding-right: 40px;
+        li a {
+          padding-right: 30px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          &:before {
+            right: 10px;
+          }
+          &:hover:before {
+            right: 13px;
+            left: unset;
+          }
+        }
+      }
+      .ml-menu-3 {
+        padding-right: 20px;
+        li a {
+          padding-right: 30px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          &:before {
+            right: 10px;
+          }
+          &:hover:before {
+            right: 13px;
+            left: unset;
+          }
+        }
+      }
     }
     li ul.ml-menu li a {
       &:before {
@@ -30,6 +62,10 @@
       }
     }
     .ml-sub-menu:after {
+      left: 17px;
+      right: unset;
+    }
+    .ml-sub-menu2:after {
       left: 17px;
       right: unset;
     }

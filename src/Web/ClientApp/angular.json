@@ -31,27 +31,30 @@
               "dragula",
               "contra/emitter",
               "crossvent",
-              "apexcharts"
+              "apexcharts",
+              "fast-deep-equal",
+              "rfdc",
+              "sweetalert2",
+              "@ckeditor/ckeditor5-build-classic"
             ],
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/web.config"
+              "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@swimlane/ngx-datatable/index.css",
+              "./node_modules/@swimlane/ngx-datatable/themes/material.css",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "./node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/style.scss",
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/quill/dist/quill.core.css", 
-              "node_modules/quill/dist/quill.snow.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/moment/min/moment.min.js",
               "./node_modules/chart.js/dist/Chart.bundle.js",
-              "./node_modules/apexcharts/dist/apexcharts.min.js",
-              "./node_modules/quill/dist/quill.js"
+              "./node_modules/apexcharts/dist/apexcharts.min.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -132,7 +135,6 @@
       }
     }
   },
-  "defaultProject": "oreva",
   "cli": {
     "analytics": false
   }

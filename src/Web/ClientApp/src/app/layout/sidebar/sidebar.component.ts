@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
 import { AuthService } from 'src/app/core/service/auth.service';
-import { User } from 'src/app/core/models/user';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -19,9 +18,6 @@ import { User } from 'src/app/core/models/user';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public sidebarItems: any[];
-  level1Menu = '';
-  level2Menu = '';
-  level3Menu = '';
   public innerHeight: any;
   public bodyTag: any;
   listMaxHeight: string;
@@ -32,9 +28,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   headerHeight = 60;
   routerObj = null;
   currentRoute: string;
-
-  currentUser:User;
-
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -42,15 +35,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {
-
-    this.currentUser = this.authService.currentUserValue;
     this.routerObj = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // logic for select active menu in dropdown
-        const currenturl = event.url.split('?')[0];
-        this.level1Menu = currenturl.split('/')[1];
-        this.level2Menu = currenturl.split('/')[2];
-
         // close sidebar on mobile screen after menu select
         this.renderer.removeClass(this.document.body, 'overlay-open');
         this.sidebbarClose();
@@ -59,6 +45,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
+    if (window.innerWidth < 1025) {
+      this.renderer.removeClass(this.document.body, 'side-closed');
+    }
     this.setMenuHeight();
     this.checkStatuForResize(false);
   }
@@ -69,52 +58,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.sidebbarClose();
     }
   }
-  callLevel1Toggle(event: any, element: any) {
-    if (element === this.level1Menu) {
-      this.level1Menu = '0';
-    } else {
-      this.level1Menu = element;
-    }
-    const hasClass = event.target.classList.contains('toggled');
-    if (hasClass) {
-      this.renderer.removeClass(event.target, 'toggled');
-    } else {
-      this.renderer.addClass(event.target, 'toggled');
-    }
-  }
+  callToggleMenu(event: any, length: any) {
+    if (length > 0) {
+      const parentElement = event.target.closest('li');
+      const activeClass = parentElement.classList.contains('active');
 
-  callLevel2Toggle(event: any, element: any) {
-    if (element === this.level2Menu) {
-      this.level2Menu = '0';
-    } else {
-      this.level2Menu = element;
-    }
-  }
-  callLevel3Toggle(event: any, element: any) {
-    if (element === this.level3Menu) {
-      this.level3Menu = '0';
-    } else {
-      this.level3Menu = element;
+      if (activeClass) {
+        this.renderer.removeClass(parentElement, 'active');
+      } else {
+        this.renderer.addClass(parentElement, 'active');
+      }
     }
   }
   ngOnInit() {
     if (this.authService.currentUserValue) {
-      this.sidebarItems = ROUTES.filter((sidebarItem) => 
-      {
-        console.log(this.currentUser.role);
-        
-        if(sidebarItem.title=="MENUITEMS.ADMIN.TEXT" && !this.currentUser.role.includes("Admin"))
-        {
-          sidebarItem.isVisible=false;
-        }
-
-        if(sidebarItem.title=="MENUITEMS.ATTENDANCE.TEXT" && this.currentUser.role=="Student")
-        {
-          sidebarItem.isVisible=false;
-        }
-
-        return  sidebarItem;
-      });
+      this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
     }
     this.initLeftSidebar();
     this.bodyTag = this.document.body;

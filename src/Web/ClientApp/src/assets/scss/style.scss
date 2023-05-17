@@ -15,10 +15,7 @@
                 
 /*                 [1. External Import ]                   			*/
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
-@import '~ngx-toastr/toastr';
-@import '~@ng-select/ng-select/themes/default.theme.css';
 @import '../../../node_modules/angular-archwizard/archwizard.css';
 
 /*                 [2. Fonts]                   				*/
@@ -89,6 +86,7 @@
 /* 5.23 Dropdown */
 @import 'override/_tab';
 /* 5.24 Table */
+@import 'override/_table';
 /* 5.25 Tooltip */
 @import 'override/_tooltip';
 /* 5.26 Timeline */

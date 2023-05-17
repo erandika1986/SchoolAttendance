@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  //apiUrl:'http://igreeting.eastus.cloudapp.azure.com:5977/api/',
-  apiUrl: 'https://localhost:7193/api/',
-
+  apiUrl: 'http://localhost:4200',
 };
 
 /*

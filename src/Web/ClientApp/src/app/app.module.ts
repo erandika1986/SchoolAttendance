@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { CoreModule } from './core/core.module';
@@ -16,6 +16,7 @@ import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { fakeBackendProvider } from './core/interceptor/fake-backend';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import {
@@ -26,6 +27,7 @@ import {
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 import {
   HttpClientModule,
@@ -33,10 +35,8 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
   wheelPropagation: false,
 };
 
@@ -56,14 +56,13 @@ export function createTranslateLoader(http: HttpClient): any {
     FooterComponent,
   ],
   imports: [
-
     BrowserModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
+    LoadingBarRouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -76,7 +75,6 @@ export function createTranslateLoader(http: HttpClient): any {
     SharedModule,
     NgbModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -84,9 +82,9 @@ export function createTranslateLoader(http: HttpClient): any {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
   ],
-  entryComponents: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,21 +11,106 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
       {
-        path: 'admin',
+        path: 'dashboard',
         loadChildren: () =>
-          import('./admin/admin.module').then((m) => m.AdminModule),
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
-        path: 'attendance',
+        path: 'advance-table',
         loadChildren: () =>
-          import('./attendance/attendance.module').then((m) => m.AttendanceModule),
+          import('./advance-table/advance-table.module').then(
+            (m) => m.AdvanceTableModule
+          ),
       },
       {
-        path: 'teacher-lessons',
+        path: 'calendar',
         loadChildren: () =>
-          import('./teacher-lesson/teacher-lesson.module').then((m) => m.TeacherLessonModule),
+          import('./calendar/calendar.module').then((m) => m.CalendarsModule),
       },
-    
+      {
+        path: 'apps',
+        loadChildren: () =>
+          import('./apps/apps.module').then((m) => m.AppsModule),
+      },
+      {
+        path: 'email',
+        loadChildren: () =>
+          import('./email/email.module').then((m) => m.EmailModule),
+      },
+      {
+        path: 'forms',
+        loadChildren: () =>
+          import('./forms/forms.module').then((m) => m.FormsModule),
+      },
+      {
+        path: 'charts',
+        loadChildren: () =>
+          import('./charts/charts.module').then((m) => m.ChartsModule),
+      },
+      {
+        path: 'tables',
+        loadChildren: () =>
+          import('./tables/tables.module').then((m) => m.TablesModule),
+      },
+      {
+        path: 'data-tables',
+        loadChildren: () =>
+          import('./data-tables/data-tables.module').then(
+            (m) => m.DataTablesModule
+          ),
+      },
+      {
+        path: 'data-tables',
+        loadChildren: () =>
+          import('./data-tables/data-tables.module').then(
+            (m) => m.DataTablesModule
+          ),
+      },
+      {
+        path: 'ui',
+        loadChildren: () => import('./ui/ui.module').then((m) => m.UiModule),
+      },
+      {
+        path: 'media',
+        loadChildren: () =>
+          import('./media/media.module').then((m) => m.MediaModule),
+      },
+      {
+        path: 'widget',
+        loadChildren: () =>
+          import('./widget/widget.module').then((m) => m.WidgetModule),
+      },
+      {
+        path: 'advanced',
+        loadChildren: () =>
+          import('./advanced-component/advanced-component.module').then(
+            (m) => m.AdvancedComponentModule
+          ),
+      },
+      {
+        path: 'icons',
+        loadChildren: () =>
+          import('./icons/icons.module').then((m) => m.IconsModule),
+      },
+      {
+        path: 'extra-pages',
+        loadChildren: () =>
+          import('./extra-pages/extra-pages.module').then(
+            (m) => m.ExtraPagesModule
+          ),
+      },
+      {
+        path: 'maps',
+        loadChildren: () =>
+          import('./maps/maps.module').then((m) => m.MapsModule),
+      },
+      {
+        path: 'multilevel',
+        loadChildren: () =>
+          import('./multilevel/multilevel.module').then(
+            (m) => m.MultilevelModule
+          ),
+      },
     ],
   },
 
@@ -39,7 +124,7 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

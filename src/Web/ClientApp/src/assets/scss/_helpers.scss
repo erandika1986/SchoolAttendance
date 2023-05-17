@@ -1,4 +1,5 @@
-﻿$font-colors: (
+﻿@use 'sass:math';
+$font-colors: (
   red: #f44336,
   pink: #fa62bb,
   purple: #9c27b0,
@@ -189,6 +190,6 @@ $linear-colors: (
 
 @for $i from 0 through 100 {
   .width-per-#{$i} {
-    width: round(percentage($i/100));
+    width: round(percentage(math.div($i, 100)));
   }
 }

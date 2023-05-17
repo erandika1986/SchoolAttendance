@@ -2,9 +2,7 @@ export class User {
   id: number;
   username: string;
   password: string;
-  fullName: string;
-  profilePic: string;
-  role:string;
+  firstName: string;
+  lastName: string;
   token: string;
-  gender:string;
 }

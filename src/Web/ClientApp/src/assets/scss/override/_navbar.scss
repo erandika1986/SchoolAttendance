@@ -496,7 +496,7 @@
 
 .header-dropdown {
   right: 0;
-  left: auto;
+  left: auto !important;
 }
 
 @media (max-width: 619px) {

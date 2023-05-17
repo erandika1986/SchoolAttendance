@@ -112,6 +112,14 @@ $color-dark: #16192a;
           background-color: rgba(0, 0, 0, 0.5);
         }
       }
+      &.active-top {
+        ul.dropdown-menu {
+          background-color: #16192a;
+        }
+        .menu-top {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
 
       a:hover {
         background-color: rgba(0, 0, 0, 0.2);

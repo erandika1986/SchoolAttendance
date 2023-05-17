@@ -104,6 +104,14 @@ $color-font: #96a2b4;
     color: $color-font;
     border-color: #4c4c4c;
 
+    tr {
+      border-top: 1px solid #363848 !important;
+    }
+
+    thead tr {
+      border-top: 1px solid #121422 !important;
+    }
+
     &.table-bordered {
       border: 1px solid #212429;
       td {
@@ -739,6 +747,10 @@ $color-font: #96a2b4;
 
   .table-hover tbody tr:hover {
     color: $color-font;
+
+    td {
+      color: $color-font;
+    }
   }
 
   .author-box .author-box-job {

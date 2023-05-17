@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   userImg: string;
   userType: string;
   headerHeight = 60;
-  routerObj = null;
+  routerObj;
   currentRoute: string;
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
   }
   @HostListener('window:resize', ['$event'])
-  windowResizecall(event) {
+  windowResizecall(event:any) {
     if (window.innerWidth < 1025) {
       this.renderer.removeClass(this.document.body, 'side-closed');
     }
@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.checkStatuForResize(false);
   }
   @HostListener('document:mousedown', ['$event'])
-  onGlobalClick(event): void {
+  onGlobalClick(event:any): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.renderer.removeClass(this.document.body, 'overlay-open');
       this.sidebbarClose();
@@ -95,21 +95,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
   isOpen() {
     return this.bodyTag.classList.contains('overlay-open');
   }
-  checkStatuForResize(firstTime) {
+  checkStatuForResize(firstTime:any) {
     if (window.innerWidth < 1025) {
       this.renderer.addClass(this.document.body, 'sidebar-gone');
     } else {
       this.renderer.removeClass(this.document.body, 'sidebar-gone');
     }
   }
-  mouseHover(e) {
+  mouseHover(e:any) {
     const body = this.elementRef.nativeElement.closest('body');
     if (body.classList.contains('submenu-closed')) {
       this.renderer.addClass(this.document.body, 'side-closed-hover');
       this.renderer.removeClass(this.document.body, 'submenu-closed');
     }
   }
-  mouseOut(e) {
+  mouseOut(e:any) {
     const body = this.elementRef.nativeElement.closest('body');
     if (body.classList.contains('side-closed-hover')) {
       this.renderer.removeClass(this.document.body, 'side-closed-hover');

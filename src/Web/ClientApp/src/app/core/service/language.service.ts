@@ -8,7 +8,7 @@ export class LanguageService {
   public languages: string[] = ['en', 'es', 'de'];
 
   constructor(public translate: TranslateService) {
-    let browserLang;
+    let browserLang:any;
     translate.addLangs(this.languages);
 
     if (localStorage.getItem('lang')) {
@@ -19,7 +19,7 @@ export class LanguageService {
     translate.use(browserLang.match(/en|es|de/) ? browserLang : 'en');
   }
 
-  public setLanguage(lang) {
+  public setLanguage(lang:any) {
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
   }

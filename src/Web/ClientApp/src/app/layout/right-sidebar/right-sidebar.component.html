@@ -1,4 +1,4 @@
-<div class="settingSidebar">
+<div class="settingSidebar" [ngClass]="isOpenSidebar ? 'showSettingPanel' : ''">
   <a href="javascript:void(0)" class="settingPanelToggle" (click)="toggleRightSidebar()"> <i
       class="fa fa-spin fa-cog"></i>
   </a>
@@ -46,7 +46,33 @@
       </div>
       <div class="p-15 border-bottom">
         <h6 class="font-medium m-b-10">Color Theme</h6>
-
+        <div class="theme-setting-options">
+          <ul class="choose-theme list-unstyled mb-0">
+            <li data-theme="white" [ngClass]="{'active': selectedBgColor === 'white'}" (click)="selectTheme('white')">
+              <div class="white"></div>
+            </li>
+            <li data-theme="cyan" [ngClass]="{'active': selectedBgColor === 'cyan'}" (click)="selectTheme('cyan')">
+              <div class="cyan"></div>
+            </li>
+            <li data-theme="black" [ngClass]="{'active': selectedBgColor === 'black'}" (click)="selectTheme('black')">
+              <div class="black"></div>
+            </li>
+            <li data-theme="purple" [ngClass]="{'active': selectedBgColor === 'purple'}"
+              (click)="selectTheme('purple')">
+              <div class="purple"></div>
+            </li>
+            <li data-theme="orange" [ngClass]="{'active': selectedBgColor === 'orange'}"
+              (click)="selectTheme('orange')">
+              <div class="orange"></div>
+            </li>
+            <li data-theme="green" [ngClass]="{'active': selectedBgColor === 'green'}" (click)="selectTheme('green')">
+              <div class="green"></div>
+            </li>
+            <li data-theme="red" [ngClass]="{'active': selectedBgColor === 'red'}" (click)="selectTheme('red')">
+              <div class="red"></div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

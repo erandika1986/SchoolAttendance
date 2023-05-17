@@ -20,7 +20,7 @@ import { ConfigService } from '../../config/config.service';
   styleUrls: ['./right-sidebar.component.sass'],
 })
 export class RightSidebarComponent implements OnInit, AfterViewInit {
-  selectedBgColor = 'white';
+  selectedBgColor:any = 'white';
   maxHeight: string;
   maxWidth: string;
   showpanel = false;
@@ -50,7 +50,7 @@ export class RightSidebarComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem('choose_skin')) {
       this.renderer.addClass(
         this.document.body,
-        localStorage.getItem('choose_skin')
+        localStorage.getItem('choose_skin') || '{}'
       );
       this.selectedBgColor = localStorage.getItem('choose_skin_active');
     } else {
@@ -88,7 +88,7 @@ export class RightSidebarComponent implements OnInit, AfterViewInit {
     }
   }
   @HostListener('window:resize', ['$event'])
-  windowResizecall(event) {
+  windowResizecall(event:any) {
     this.setMenuHeight();
   }
   setMenuHeight() {
@@ -96,7 +96,7 @@ export class RightSidebarComponent implements OnInit, AfterViewInit {
     this.maxHeight = height + '';
   }
 
-  selectTheme(e) {
+  selectTheme(e:any) {
     this.selectedBgColor = e;
     const prevTheme = this.elementRef.nativeElement
       .querySelector('.choose-theme li.active')
@@ -125,7 +125,7 @@ export class RightSidebarComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem('choose_skin')) {
       this.renderer.removeClass(
         this.document.body,
-        localStorage.getItem('choose_skin')
+        localStorage.getItem('choose_skin') || '{}'
       );
     } else {
       this.renderer.removeClass(
@@ -152,7 +152,7 @@ export class RightSidebarComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem('choose_skin')) {
       this.renderer.removeClass(
         this.document.body,
-        localStorage.getItem('choose_skin')
+        localStorage.getItem('choose_skin') || '{}'
       );
     } else {
       this.renderer.removeClass(

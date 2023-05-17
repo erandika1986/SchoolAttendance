@@ -22,8 +22,8 @@ const document: any = window.document;
 export class HeaderComponent implements OnInit, AfterViewInit {
   public config: any = {};
   isNavbarCollapsed = true;
-  flagvalue;
-  countryName;
+  flagvalue:any;
+  countryName:any;
   langStoreValue: string;
   defaultFlag: string;
   isOpenSidebar: boolean;
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.config = this.configService.configData;
 
-    this.langStoreValue = localStorage.getItem('lang');
+    this.langStoreValue = localStorage.getItem('lang') || '{}';
     const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
     this.countryName = val.map((element) => element.text);
     if (val.length === 0) {
@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     // set theme on startup
     if (localStorage.getItem('theme')) {
       this.renderer.removeClass(this.document.body, this.config.layout.variant);
-      this.renderer.addClass(this.document.body, localStorage.getItem('theme'));
+      this.renderer.addClass(this.document.body, localStorage.getItem('theme') || '{}');
     } else {
       this.renderer.addClass(this.document.body, this.config.layout.variant);
     }
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem('menuOption')) {
       this.renderer.addClass(
         this.document.body,
-        localStorage.getItem('menuOption')
+        localStorage.getItem('menuOption') || '{}'
       );
     } else {
       this.renderer.addClass(

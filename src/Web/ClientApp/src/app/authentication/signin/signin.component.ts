@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
       return;
     } else {
       this.authService
-        .login(this.f.username.value, this.f.password.value)
+        .login(this.f["username"].value, this.f["password"].value)
         .subscribe(
           (res) => {
             if (res) {

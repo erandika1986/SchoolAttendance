@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { DomSanitizer } from "@angular/platform-browser";
 
 @Injectable()
@@ -30,12 +30,13 @@ export class LessonLectureModel
             editable: new FormControl(item.editable),
             isuploading:new FormControl(false),
             uploadPrecentage:new FormControl(0),
-            youtubeLink:new FormControl('')
+            youtubeLink:new FormControl(null)
         });
 
         if(item.contentType==4)
         {
             fg.get("youtubeLink").setValue(sanitizer.bypassSecurityTrustResourceUrl(item.content));
+            //(fg.get("youtubeLink") as FormArray).setValue(sanitizer.bypassSecurityTrustResourceUrl(item.content));
         }
 
         if(isDisable)

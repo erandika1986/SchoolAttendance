@@ -27,7 +27,8 @@ export class LessonUnitTestTopicModel
 
         const cf = item.questions.map((value, index) => { return LessonUnitTestTopicQuestionModel.asFormGroup(value, isDisable,fb,item.questionTypeId) });
         const fArray = new FormArray(cf);
-        fg.setControl('questions', fArray);
+        //fg.setControl('questions', fArray);
+        (fg.get("questions") as FormArray).setValue(cf);
 
         if(isDisable)
         {

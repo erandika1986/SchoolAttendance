@@ -12,14 +12,22 @@
       "TEXT": "-- Main"
     },
     "HOME": {
-      "TEXT": "Home",
+      "TEXT": "Administration",
       "LIST": {
-        "DASHBOARD1": "Dashboard 1",
-        "DASHBOARD2": "Dashboard 2"
+        "TEACHERS": "Teachers",
+        "STUDENTS": "Students",
+        "SUBJECT": "Subject",
+        "GRADES": "Grades",
+        "CLASSES": "Classes",
+        "EXCEL_UPLOAD": "Excel Upload"
       }
     },
-    "ADVANCE-TABLE": {
-      "TEXT": "Advance Table"
+    "ATTENDANCE": {
+      "TEXT": "Attendance",
+      "LIST": {
+        "ATTENDANCE_LIST": "Attendance List",
+        "ATTENDANCE_REPORT": "Report"
+      }
     },
     "APPS": {
       "TEXT": "-- Apps"

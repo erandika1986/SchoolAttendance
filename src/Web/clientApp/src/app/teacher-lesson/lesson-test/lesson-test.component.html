@@ -1,0 +1,259 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Lesson Tests</h4>
+    <div class="card-header-action">
+      <!--       <button
+          pButton
+          type="button"
+          icon="pi pi-save"
+          class="p-button-sm"
+          style="width: 48px; height: 48px"
+        ></button> -->
+      <!--       <button
+          pButton
+          pRipple
+          class="p-button-raised p-button-text"
+          class="p-button-outlined"
+          placement="bottom"
+          ngbTooltip="Save lesson content"
+          [disabled]="!lessonTopicForm.dirty && lessonTopicForm.valid"
+        >
+          <span
+            ><img
+              src="../../../assets//images/save-icon.png"
+              style="width: 32px; height: 32px; margin: 2px"
+          /></span>
+        </button> -->
+
+      <button
+        pButton
+        pRipple
+        icon="pi pi-save"
+        type="button"
+        label="Save All"
+        placement="bottom"
+        ngbTooltip="Save All"
+        class="p-button-lg p-button-success m-2"
+      ></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off" [formGroup]="lessonUnitTestForm">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group position-relative">
+              <label
+                >Lesson Unit Test Name<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Enter lesson unit test name"
+                name="txtLessonUnitTest"
+                required=""
+              />
+              <small
+                class="form-text text-danger"
+                *ngIf="
+                  !lessonUnitTestForm.get('name').valid &&
+                  lessonUnitTestForm.get('name').touched
+                "
+                >Please enter a Lesson unit test name!</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ps-3 pe-3 pt-3">
+            <div class="form-group">
+              <label for="rtStudentGuide">Student Guide</label>
+              <p-editor
+                id="rtStudentGuide"
+                formControlName="studentGuide"
+                [style]="{ height: '320px' }"
+              ></p-editor>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="btn-toolbar"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+            >
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-save"
+                  type="button"
+                  label="Save"
+                  class="p-button-sm p-button-success m-2"
+                  (click)="saveSaveTestDetails()"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row" *ngIf="lessonTestId > 0">
+          <div class="col-12 mb-2">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-plus"
+              type="button"
+              label="Add New Section"
+              class="p-button"
+              (click)="addNewTestSection()"
+              placement="bottom"
+              ngbTooltip="Add new test section"
+            ></button>
+          </div>
+        </div>
+
+        <div formArrayName="topics">
+          <div
+            class="row mb-2"
+            *ngFor="let section of topics()?.controls; let sectionIndex = index"
+          >
+            <div class="col-12" [formGroupName]="sectionIndex">
+              <p-panel [toggleable]="true">
+                <ng-template pTemplate="header">
+                  <p-button
+                    label="Add Question"
+                    icon="fa fa-plus"
+                    styleClass="p-button-sm"
+                    placement="bottom"
+                    ngbTooltip="Add new Question"
+                    (click)="addNewQuestion(section)"
+                  ></p-button>
+
+                  <label *ngIf="!section.get('editable').value"
+                    >{{ section.get("name").value }}
+                    {{
+                      section.get("questionTypeId").value == 1
+                        ? " : ( MCQ )"
+                        : " : ( Open Ended)"
+                    }}</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="width: 60%"
+                    formControlName="name"
+                    *ngIf="section.get('editable').value"
+                  />
+                </ng-template>
+                <ng-template pTemplate="icons">
+                  <button
+                    pButton
+                    pRipple
+                    class="p-panel-header-icon p-link"
+                    icon="fa fa-save"
+                    *ngIf="section.get('editable').value"
+                    placement="top"
+                    ngbTooltip="Save unit test section name"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    class="p-panel-header-icon p-link"
+                    icon="pi pi-pencil"
+                    *ngIf="!section.get('editable').value"
+                    placement="top"
+                    ngbTooltip="Edit unit test section name"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    class="p-panel-header-icon p-link"
+                    icon="fa fa-times"
+                    placement="top"
+                    ngbTooltip="Delete section"
+                  ></button>
+                </ng-template>
+              </p-panel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-dialog
+  header="Lesson Unit Test Section Type"
+  style="text-align: center !important"
+  [(visible)]="displaySectionType"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <div class="container"></div>
+  <div class="row p-2">
+    <div
+      class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-2"
+      style="min-width: 200px"
+      (click)="setSectionType(1)"
+    >
+      <div
+        class="card text-center custome-tile"
+        style="border-style: solid; border-width: 1px; border-color: dimgrey"
+      >
+        <div class="card-body">
+          <h5 class="card-title">MCQ</h5>
+          <!--           <div class="card-text">
+            <img
+              class="card-img-top"
+              style="height: 64px; width: 64px"
+              src="../../../assets/images/content_types/video.png"
+              alt="Card image cap"
+            />
+          </div> -->
+          <!--           <a href="#" class="btn btn-primary">Select</a> -->
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-2"
+      style="min-width: 200px"
+      (click)="setSectionType(2)"
+    >
+      <div
+        class="card text-center custome-tile"
+        style="border-style: solid; border-width: 1px; border-color: dimgrey"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Open Ended</h5>
+          <div class="card-text">
+            <!--             <img
+              class="card-img-top"
+              style="height: 64px; width: 64px"
+              src="../../../assets/images/content_types/audio.png"
+              alt="Card image cap"
+            /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   <ng-template pTemplate="footer">
+<p-button
+icon="pi pi-check"
+(click)="displayBasic = false"
+label="Yes"
+styleClass="p-button-text"
+></p-button>
+<p-button
+icon="pi pi-times"
+(click)="displayBasic = false"
+label="No"
+></p-button>
+</ng-template> -->
+</p-dialog>

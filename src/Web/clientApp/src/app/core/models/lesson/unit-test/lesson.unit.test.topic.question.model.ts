@@ -43,7 +43,7 @@ export class LessonUnitTestTopicQuestionModel
     
             const cf = item.mcqQuestion.teacherAnswers.map((value, index) => { return QuestionMCQTeacherAnswerModel.asFormGroup(value, isDisable) });
             const fArray = new FormArray(cf);
-            fg.setControl('mcqQuestion.teacherAnswers', fArray);
+            (fg.get("mcqQuestion.teacherAnswers") as FormArray).setValue(cf);
     
             if(isDisable)
             {
@@ -80,7 +80,7 @@ export class LessonUnitTestTopicQuestionModel
     
             const cf = item.openEndedQuestion.teacherAnswers.map((value, index) => { return QuestionOpneEndedTeacherAnswerModel.asFormGroup(value, isDisable) });
             const fArray = new FormArray(cf);
-            fg.setControl('openEndedQuestion.teacherAnswers', fArray);
+            (fg.get("openEndedQuestion.teacherAnswers") as FormArray).setValue(cf);
     
             if(isDisable)
             {

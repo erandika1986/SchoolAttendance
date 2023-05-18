@@ -25,7 +25,8 @@ export class LessonTopicModel
 
         const cf = item.lessonLectures.map((value, index) => { return LessonLectureModel.asFormGroup(value, isDisable,sanitizer) });
         const fArray = new FormArray(cf);
-        fg.setControl('lessonLectures', fArray);
+        //fg.setControl('lessonLectures', fArray);
+        (fg.get("lessonLectures") as FormArray).setValue(cf);
 
         if(isDisable)
         {

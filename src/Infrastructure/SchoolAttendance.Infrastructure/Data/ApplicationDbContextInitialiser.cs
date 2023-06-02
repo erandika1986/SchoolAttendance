@@ -187,14 +187,19 @@ namespace SchoolAttendance.Infrastructure.Data
                 Name = "Monthly Test",
             };
 
-            var midTermTest = new AssessmentType()
+            var firstTermTest = new AssessmentType()
             {
-                Name = "Mid Term Test",
+                Name = "First Term Test",
             };
 
-            var termTest = new AssessmentType()
+            var secondTermTest = new AssessmentType()
             {
-                Name = "Term Test",
+                Name = "Second Term Test",
+            };
+
+            var thirdTermTest = new AssessmentType()
+            {
+                Name = "Third Term Test",
             };
 
             var assignment = new AssessmentType()
@@ -210,14 +215,20 @@ namespace SchoolAttendance.Infrastructure.Data
             {
                 await _context.AssessmentTypes.AddAsync(monthlyTest);
             }
-            if (_context.AssessmentTypes.All(a => a.Name != midTermTest.Name))
+            if (_context.AssessmentTypes.All(a => a.Name != firstTermTest.Name))
             {
-                await _context.AssessmentTypes.AddAsync(midTermTest);
+                await _context.AssessmentTypes.AddAsync(firstTermTest);
             }
-            if (_context.AssessmentTypes.All(a => a.Name != termTest.Name))
+            if (_context.AssessmentTypes.All(a => a.Name != secondTermTest.Name))
             {
-                await _context.AssessmentTypes.AddAsync(termTest);
+                await _context.AssessmentTypes.AddAsync(secondTermTest);
             }
+
+            if (_context.AssessmentTypes.All(a => a.Name != thirdTermTest.Name))
+            {
+                await _context.AssessmentTypes.AddAsync(thirdTermTest);
+            }
+
             if (_context.AssessmentTypes.All(a => a.Name != assignment.Name))
             {
                 await _context.AssessmentTypes.AddAsync(assignment);

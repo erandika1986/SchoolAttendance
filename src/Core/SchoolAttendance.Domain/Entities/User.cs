@@ -30,6 +30,7 @@ namespace SchoolAttendance.Domain.Entities
             StudentSubjectAttendances = new HashSet<StudentSubjectAttendance>();
             SubjectTeachers = new HashSet<SubjectTeacher>();
             Subjects = new HashSet<Subject>();
+            UserRoles = new HashSet<UserRole>();
         }
 
 

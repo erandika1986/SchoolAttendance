@@ -16,7 +16,10 @@ namespace SchoolAttendance.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("SchoolAttendance.Domain.Entities.AcademicYear", b =>
@@ -48,6 +51,9 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ApprovedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AssessmentConductBy")
                         .HasColumnType("int");
 
                     b.Property<int?>("AssessmentTypeId")
@@ -157,10 +163,10 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnName("ConnectedIP");
 
                     b.Property<decimal?>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<decimal?>("ScorePrecentaged")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<DateTime?>("StartedOn")
                         .HasColumnType("datetime");
@@ -281,7 +287,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int>("SequenceNo")
                         .HasColumnType("int");
@@ -308,7 +314,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<decimal?>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -361,6 +367,9 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("AssessmentLevel")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -369,6 +378,52 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AssessmentType", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolAttendance.Domain.Entities.AssessmentUpload", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AssessmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SavedFileName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("SavedFilePath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("VersionNo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssessmentId");
+
+                    b.ToTable("AssessmentUpload", (string)null);
                 });
 
             modelBuilder.Entity("SchoolAttendance.Domain.Entities.Class", b =>
@@ -417,7 +472,6 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasDefaultValueSql("((1))");
 
                     b.Property<int?>("SubjectTeacherId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ClassId", "SubjectId");
@@ -567,7 +621,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<decimal?>("Duration")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int?>("GradeId")
                         .HasColumnType("int");
@@ -689,7 +743,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<string>("StudentBrowser")
                         .HasMaxLength(500)
@@ -939,7 +993,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int>("SequenceNo")
                         .HasColumnType("int");
@@ -1019,7 +1073,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Score")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -1157,7 +1211,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.ToTable("QuestionStructured", (string)null);
                 });
 
-            modelBuilder.Entity("SchoolAttendance.Domain.Entities.QuestionTructuredTeacherAnswer", b =>
+            modelBuilder.Entity("SchoolAttendance.Domain.Entities.QuestionStructuredTeacherAnswer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1220,13 +1274,13 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ActualScore")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<DateTime?>("ActualScoreEnteredOn")
                         .HasColumnType("datetime");
 
                     b.Property<decimal?>("PredictedTargetScore")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<DateTime?>("TargetAdjustedOn")
                         .HasColumnType("datetime");
@@ -1235,7 +1289,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<decimal?>("TeacherAdjustedTargetScore")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.HasKey("StudentId", "AssessmentId");
 
@@ -1702,6 +1756,17 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.Navigation("StructuredQuestion");
                 });
 
+            modelBuilder.Entity("SchoolAttendance.Domain.Entities.AssessmentUpload", b =>
+                {
+                    b.HasOne("SchoolAttendance.Domain.Entities.Assessment", "Assessment")
+                        .WithMany("AssessmentUploads")
+                        .HasForeignKey("AssessmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Assessment");
+                });
+
             modelBuilder.Entity("SchoolAttendance.Domain.Entities.Class", b =>
                 {
                     b.HasOne("SchoolAttendance.Domain.Entities.AcademicYear", "AcademicYearNavigation")
@@ -1746,8 +1811,6 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.HasOne("SchoolAttendance.Domain.Entities.User", "SubjectTeacher")
                         .WithMany("ClassSubjects")
                         .HasForeignKey("SubjectTeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("FK_ClassSubject_User");
 
                     b.Navigation("Class");
@@ -2138,7 +2201,7 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("SchoolAttendance.Domain.Entities.QuestionTructuredTeacherAnswer", b =>
+            modelBuilder.Entity("SchoolAttendance.Domain.Entities.QuestionStructuredTeacherAnswer", b =>
                 {
                     b.HasOne("SchoolAttendance.Domain.Entities.QuestionStructured", "QuestionStructured")
                         .WithMany("QuestionTructuredTeacherAnswers")
@@ -2305,6 +2368,8 @@ namespace SchoolAttendance.Infrastructure.Migrations
                     b.Navigation("AssessmentClasses");
 
                     b.Navigation("AssessmentSections");
+
+                    b.Navigation("AssessmentUploads");
 
                     b.Navigation("StudentAssessmentScores");
                 });

@@ -181,9 +181,18 @@ export class LessonContainerComponent implements OnInit {
 
 
         this.lessonForm.get("lessonTopicForm.lessonId").setValue(response.id);
+
+        console.log(response);
+        
         const lessonTopicsform = response.lessonTopicForm.lessonTopics.map((value, index) => { return LessonTopicModel.asFormGroup(value, this.isDisable,this.fb,this.sanitizer) });
+        
+        console.log("xxxx");
+        console.log(lessonTopicsform);
+        
+        
         const lessonTopicsformArray = new FormArray(lessonTopicsform);
         (this.lessonForm.get("lessonTopicForm") as FormGroup).setControl("lessonTopics", lessonTopicsformArray);
+        
 
         this.lessonForm.get("lessonUnitTest.lessonId").setValue(response.id);
         this.lessonForm.get("lessonUnitTest.id").setValue(response.lessonUnitTest.id);

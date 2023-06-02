@@ -1,4 +1,5 @@
-﻿using SchoolAttendance.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolAttendance.Domain.Entities;
 using SchoolAttendance.Domain.Repositories.Query;
 using SchoolAttendance.Infrastructure.Data;
 using SchoolAttendance.Infrastructure.Repositories.Queries.Base;
@@ -17,6 +18,13 @@ namespace SchoolAttendance.Infrastructure.Repositories.Queries
             : base(context)
         {
             
+        }
+
+        public async Task<AcademicYear> GetCurrentAcademicYear(CancellationToken cancellationToken)
+        {
+            var currentAcademicYear = await _context.AcademicYears.FirstOrDefaultAsync(x => x.IsCurrentYear == true,cancellationToken);
+
+            return currentAcademicYear;
         }
     }
 }

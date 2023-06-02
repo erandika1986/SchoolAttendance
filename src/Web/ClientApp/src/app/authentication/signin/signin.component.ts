@@ -46,6 +46,10 @@ export class SigninComponent implements OnInit {
             if (res) {
               const token = this.authService.currentUserValue.token;
               if (token) {
+
+                console.log("XXXXXXXXXXXXXXXXX")
+                console.log(this.authService.currentUserValue);
+                
                 this.router.navigate(['/admin']);
               }
             } else {

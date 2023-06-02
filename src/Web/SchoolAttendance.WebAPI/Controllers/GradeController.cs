@@ -1,9 +1,12 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.Grade.Commands.SaveGradeDetail;
+using SchoolAttendance.Application.Pipelines.Grade.Queries.GetGradeList;
 using SchoolAttendance.Application.Responses;
 using SchoolAttendance.Domain.Constants;
 using System;
@@ -18,37 +21,31 @@ namespace SchoolAttendance.WebAPI.Controllers
   [ApiController]
   public class GradeController : ControllerBase
   {
-    private readonly ILogger<GradeController> logger;
-    private readonly IConfiguration config;
-    private readonly IGradeService gradeService;
-    private readonly IIdentityService identityService;
+        private readonly IMediator _mediator;
 
-    public GradeController(ILogger<GradeController> logger, IConfiguration config, IGradeService gradeService, IIdentityService identityService)
+    public GradeController(IMediator mediator)
     {
-      this.logger = logger;
-      this.config = config;
-      this.gradeService = gradeService;
-      this.identityService = identityService;
+      this._mediator = mediator;
     }
 
-    [Authorize(Roles = AuthorizedRoles.Admin)]
-    [HttpGet]
-    [Route("getGradeList")]
-    public List<GradeViewModel> GetGradeList()
-    {
-      var response = gradeService.GetGradeList();
+        [Authorize(Roles = AuthorizedRoles.Admin)]
+        [HttpGet]
+        [Route("getGradeList")]
+        public async Task<List<GradeViewModel>> GetGradeList()
+        {
+            var response = await _mediator.Send(new GetGradeListQuery());
 
-      return response;
-    }
+            return response;
+        }
 
     [Authorize(Roles = AuthorizedRoles.Admin)]
     [HttpPost]
     [Route("saveGradeDetail")]
     public async Task<ResponseViewModel> SaveGradeDetail(GradeViewModel vm)
     {
-      var response = await gradeService.SaveGradeDetail(vm);
+            var response = await _mediator.Send(new SaveGradeDetailCommand(vm));
 
-      return response;
-    }
+            return response;
+        }
   }
 }

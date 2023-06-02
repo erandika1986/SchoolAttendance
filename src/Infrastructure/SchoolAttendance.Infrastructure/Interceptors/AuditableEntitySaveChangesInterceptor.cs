@@ -46,14 +46,14 @@ namespace SchoolAttendance.Infrastructure.Interceptors
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreatedBy = _currentUserService.UserId;
-                    entry.Entity.Created = _dateTime.Now;
+                    entry.Entity.CreatedById = _currentUserService.UserId;
+                    entry.Entity.CreatedOn = _dateTime.Now;
                 }
 
                 if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
                 {
-                    entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                    entry.Entity.LastModified = _dateTime.Now;
+                    entry.Entity.UpdatedById = _currentUserService.UserId;
+                    entry.Entity.UpdatedOn = _dateTime.Now;
                 }
             }
         }

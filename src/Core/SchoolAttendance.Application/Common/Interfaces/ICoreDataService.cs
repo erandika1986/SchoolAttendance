@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Application.Common.Interfaces
 {
-  public interface ICoreDataService
-  {
-    User GetLoggedInUserByUserName(string userName);
-
-    AcademicYear GetCurrentAcademicYear();
-  }
+    public interface ICoreDataService
+    {
+        User GetLoggedInUserByUserName(string userName);
+        User GetLoggedInUserByUserId(int id);
+        AcademicYear GetCurrentAcademicYear();
+    }
 }

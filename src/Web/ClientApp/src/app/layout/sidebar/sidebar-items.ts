@@ -124,6 +124,29 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
   {
+    path: '',
+    title: 'MENUITEMS.LESSON.TEXT',
+    iconType: 'feather',
+    icon: 'monitor',
+    class: 'menu-toggle',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [
+      {
+        path: '/teacher-lessons/lessons-in-design',
+        title: 'MENUITEMS.LESSON.LIST.MY_LESSON_LIST',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      }
+    ],
+  },
+  {
     path: 'advance-table',
     title: 'MENUITEMS.ADVANCE-TABLE.TEXT',
     iconType: 'feather',

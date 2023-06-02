@@ -9,28 +9,38 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Infrastructure.Services
 {
-  public class CoreDataService : ICoreDataService
-  {
-    private readonly ISchoolAttendanceContext db;
-    private readonly ILogger<ICoreDataService> logger;
-
-
-    public CoreDataService(ISchoolAttendanceContext db, ILogger<ICoreDataService> logger)
+    public class CoreDataService : ICoreDataService
     {
-      this.db = db;
-      this.logger = logger;
-    }
+        private readonly ISchoolAttendanceContext db;
+        private readonly ILogger<ICoreDataService> logger;
 
-    public AcademicYear GetCurrentAcademicYear()
-    {
-      return db.AcademicYears.FirstOrDefault(x => x.IsCurrentYear == true);
-    }
 
-    public User GetLoggedInUserByUserName(string userName)
-    {
-      var user = db.Users.FirstOrDefault(t => t.Username.ToLower() == userName.ToLower());
+        public CoreDataService(ISchoolAttendanceContext db, ILogger<ICoreDataService> logger)
+        {
+            this.db = db;
+            this.logger = logger;
+        }
 
-      return user;
+        public AcademicYear GetCurrentAcademicYear()
+        {
+            return db.AcademicYears.FirstOrDefault(x => x.IsCurrentYear == true);
+        }
+
+        public User GetLoggedInUserByUserId(int id)
+        {
+            var user = db.Users.FirstOrDefault(t => t.Id == id);
+
+            return user;
+        }
+
+        public User GetLoggedInUserByUserName(string userName)
+        {
+            var user = db.Users.FirstOrDefault(t => t.Username.ToLower() == userName.ToLower());
+
+            return user;
+        }
+
+
+
     }
-  }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class Assessment
+    public class Assessment : BaseAuditableEntity
     {
         public Assessment()
         {
@@ -14,6 +14,7 @@ namespace SchoolAttendance.Domain.Entities
             AssessmentClasses = new HashSet<AssessmentClass>();
             AssessmentSections = new HashSet<AssessmentSection>();
             StudentAssessmentScores = new HashSet<StudentAssessmentScore>();
+            AssessmentUploads = new HashSet<AssessmentUpload>();
         }
 
         public int Id { get; set; }
@@ -22,16 +23,14 @@ namespace SchoolAttendance.Domain.Entities
         public int? GradeId { get; set; }
         public int? SubjectId { get; set; }
         public int? AssessmentTypeId { get; set; }
-        public int Statue { get; set; }
-        public int VersionNo { get; set; }
+        public AssessmentConductBy? AssessmentConductBy { get; set; }
+        public AssessmentStatus Status { get; set; }
+
         public int? ApprovedBy { get; set; }
         public DateTime? PublishedOn { get; set; }
         public DateTime CompletedOn { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public int CreatedById { get; set; }
-        public DateTime UpdatedOn { get; set; }
-        public int UpdatedById { get; set; }
+
 
         public virtual AcademicYear AcademicYear { get; set; }
         public virtual User ApprovedByNavigation { get; set; }
@@ -44,5 +43,6 @@ namespace SchoolAttendance.Domain.Entities
         public virtual ICollection<AssessmentClass> AssessmentClasses { get; set; }
         public virtual ICollection<AssessmentSection> AssessmentSections { get; set; }
         public virtual ICollection<StudentAssessmentScore> StudentAssessmentScores { get; set; }
+        public virtual ICollection<AssessmentUpload> AssessmentUploads { get; set; }
     }
 }

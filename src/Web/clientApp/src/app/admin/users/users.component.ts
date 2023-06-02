@@ -41,7 +41,8 @@ export class UsersComponent implements OnInit {
   totalRecord:number=0;
   loading: boolean;
 
-  constructor(private userService:UserService,
+  constructor(
+    private userService:UserService,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private dropdownService:DropdownService,

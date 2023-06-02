@@ -16,6 +16,7 @@ import {ButtonModule} from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminRoutingModule } from './admin-routing.module';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     GradeComponent,
     StudentComponent,
     ExcelUploadComponent,
-    SubjectComponent],
+    SubjectComponent,
+    TestComponent],
   imports: [
     CommonModule,
     ProgressBarModule,

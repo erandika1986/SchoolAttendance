@@ -10,8 +10,8 @@ namespace SchoolAttendance.Application.Common.Interfaces
 {
   public interface ISubjectService
   {
-    PaginatedItemsViewModel<SubjectViewModel> GetSubjectList(string searchText, int currentPage, int pageSize, bool status);
-    Task<ResponseViewModel> SaveSubject(SubjectViewModel vm);
-    Task<ResponseViewModel> DeleteSubject(int id);
+    //PaginatedItemsViewModel<SubjectViewModel> GetSubjectList(string searchText, int currentPage, int pageSize, bool status);
+    //Task<ResponseViewModel> SaveSubject(SubjectViewModel vm);
+    //Task<ResponseViewModel> DeleteSubject(int id);
   }
 }

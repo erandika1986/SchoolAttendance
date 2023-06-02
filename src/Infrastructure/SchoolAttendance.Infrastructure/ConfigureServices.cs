@@ -2,8 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Domain.Repositories.Command;
+using SchoolAttendance.Domain.Repositories.Query;
 using SchoolAttendance.Infrastructure.Data;
 using SchoolAttendance.Infrastructure.Interceptors;
+using SchoolAttendance.Infrastructure.Repositories.Commands;
+using SchoolAttendance.Infrastructure.Repositories.Queries;
 using SchoolAttendance.Infrastructure.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -31,6 +35,21 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISchoolAttendanceContext>(provider => provider.GetRequiredService<SchoolAttendanceContext>());
 
             services.AddScoped<ApplicationDbContextInitialiser>();
+
+
+            services.AddTransient<IUserQueryRepository, UserQueryRepository>();
+            services.AddTransient<IUserCommandRepository, UserCommandRepository>();
+            services.AddTransient<IStudentClassCommandRepository, StudentClassCommandRepository>();
+            services.AddTransient<IUserRoleCommandRepository, UserRoleCommandRepository>();
+            services.AddTransient<ISubjectTeacherCommandRepository, SubjectTeacherCommandRepository>();
+            services.AddTransient<IAcademicYearQueryRepository, AcademicYearQueryRepository>();
+            services.AddTransient<IClassQueryRepository, ClassQueryRepository>();
+            services.AddTransient<IGradeQueryRepository, GradeQueryRepository>();
+            services.AddTransient<IGradeCommandRepository, GradeCommandRepository>();
+            services.AddTransient<IGradeSubjectCommandRepository, GradeSubjectCommandRepository>();
+            services.AddTransient<IClassSubjectCommandRepository, ClassSubjectCommandRepository>();
+            services.AddTransient<IClassSubjectTimeTableQueryRepository, ClassSubjectTimeTableQueryRepository>();
+
 
 
             services.AddTransient<IAssessmentService, AssessmentService>();

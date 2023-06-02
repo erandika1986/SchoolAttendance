@@ -136,6 +136,7 @@ namespace SchoolAttendance.Infrastructure.Services
 
       return response;
     }
+
     public ClassMasterDataViewModel GetClassMasterData()
     {
       var response = new ClassMasterDataViewModel();

@@ -1,4 +1,6 @@
-﻿using SchoolAttendance.Domain.Entities;
+﻿using FluentValidation.Results;
+using Microsoft.EntityFrameworkCore;
+using SchoolAttendance.Domain.Entities;
 using SchoolAttendance.Domain.Repositories.Query;
 using SchoolAttendance.Infrastructure.Data;
 using SchoolAttendance.Infrastructure.Repositories.Queries.Base;
@@ -13,14 +15,18 @@ namespace SchoolAttendance.Infrastructure.Repositories.Queries
             
         }
 
-        public Task<IReadOnlyList<User>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<User> GetUserByEmail(string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.Trim().ToLower() == email.Trim().ToLower());
+
+            return user;
         }
 
-        public Task<User> GetUserByEmail(string email, CancellationToken cancellationToken)
+        public async Task<User> GetUserByUsername(string userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username.Trim().ToLower() == userName.Trim().ToLower());
+
+            return user;
         }
     }
 }

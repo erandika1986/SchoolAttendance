@@ -29,6 +29,12 @@
         "ATTENDANCE_REPORT": "Report"
       }
     },
+    "LESSON": {
+      "TEXT": "Lessons",
+      "LIST": {
+        "MY_LESSON_LIST": "My Lessons"
+      }
+    },
     "APPS": {
       "TEXT": "-- Apps"
     },

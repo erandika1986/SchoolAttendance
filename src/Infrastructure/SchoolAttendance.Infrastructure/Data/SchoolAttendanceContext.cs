@@ -42,6 +42,7 @@ namespace SchoolAttendance.Infrastructure.Data
 
         public virtual DbSet<AcademicYear> AcademicYears => Set<AcademicYear>();
         public virtual DbSet<Assessment> Assessments => Set<Assessment>();
+        public DbSet<AssessmentUpload> AssessmentsUploads => Set<AssessmentUpload>();
         public virtual DbSet<AssessmentClass> AssessmentClasses => Set<AssessmentClass>();
         public virtual DbSet<AssessmentClassStudent> AssessmentClassStudents => Set<AssessmentClassStudent>();
         public virtual DbSet<AssessmentMcqquestionStudentAnswer> AssessmentMcqquestionStudentAnswers => Set<AssessmentMcqquestionStudentAnswer>();
@@ -89,5 +90,7 @@ namespace SchoolAttendance.Infrastructure.Data
         public virtual DbSet<SubjectTeacher> SubjectTeachers => Set<SubjectTeacher>();
         public virtual DbSet<User> Users => Set<User>();
         public virtual DbSet<UserRole> UserRoles => Set<UserRole>();
+
+
     }
 }

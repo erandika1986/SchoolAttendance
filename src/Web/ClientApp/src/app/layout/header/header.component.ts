@@ -1,5 +1,4 @@
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
-import { AuthService } from 'src/app/core/service/auth.service';
 import { DOCUMENT } from '@angular/common';
 import {
   Component,
@@ -12,6 +11,7 @@ import {
 import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/config/config.service';
 import { LanguageService } from 'src/app/core/service/language.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 const document: any = window.document;
 
 @Component({

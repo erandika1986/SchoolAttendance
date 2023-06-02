@@ -12,6 +12,8 @@ namespace SchoolAttendance.Application.Common.Interfaces
     {
         DbSet<AcademicYear> AcademicYears { get; }
         DbSet<Assessment> Assessments { get; }
+
+        DbSet<AssessmentUpload> AssessmentsUploads { get; }
         DbSet<AssessmentClass> AssessmentClasses { get; }
         DbSet<AssessmentClassStudent> AssessmentClassStudents { get; }
         DbSet<AssessmentMcqquestionStudentAnswer> AssessmentMcqquestionStudentAnswers { get; }

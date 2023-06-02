@@ -23,8 +23,12 @@ export class LessonContentComponent implements OnInit {
 
   displayBasic:boolean;
 
-  constructor(private rootFormGroup: FormGroupDirective,    
-    private fb: FormBuilder,private lessonDesignService:LessonDesignService, private spinner: NgxSpinnerService ,private sanitizer: DomSanitizer) { }
+  constructor(
+    private rootFormGroup: FormGroupDirective,    
+    private fb: FormBuilder,
+    private lessonDesignService:LessonDesignService, 
+    private spinner: NgxSpinnerService ,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.form = this.rootFormGroup.control;

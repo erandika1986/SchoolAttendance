@@ -9,7 +9,7 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface IUserQueryRepository : IQueryRepository<User>
     {
-        Task<IReadOnlyList<User>> GetAllAsync(CancellationToken cancellationToken);
         Task<User> GetUserByEmail(string email, CancellationToken cancellationToken);
+        Task<User> GetUserByUsername(string userName, CancellationToken cancellationToken);
     }
 }

@@ -10,7 +10,7 @@ namespace SchoolAttendance.Application.Common.Interfaces
 {
   public interface IGradeService
   {
-    List<GradeViewModel> GetGradeList();
-    Task<ResponseViewModel> SaveGradeDetail(GradeViewModel vm);
+    //List<GradeViewModel> GetGradeList();
+    //Task<ResponseViewModel> SaveGradeDetail(GradeViewModel vm);
   }
 }

@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Application.Responses
 {
-	public class UserViewModel
-	{
-    public UserViewModel()
+    public class UserViewModel
     {
-      AssignedSubjects = new List<int>();
-      AssignedRoles = new List<int>();
-    }
+        public UserViewModel()
+        {
+            AssignedSubjects = new List<int>();
+            AssignedRoles = new List<int>();
+        }
 
-    public int Id { get; set; }
-    public string FullName { get; set; }
-    public string Gender { get; set; }
-    public List<int> AssignedRoles { get; set; }
-    public string Roles { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public string TimeZoneId { get; set; }
-    public string AssignedSubjectsInText { get; set; }
-    public List<int> AssignedSubjects { get; set; }
-  }
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Gender { get; set; }
+        public List<int> AssignedRoles { get; set; }
+        public string Roles { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string TimeZoneId { get; set; }
+        public string Email { get; set; }
+        public string ContactNo { get; set; }
+        public string AssignedSubjectsInText { get; set; }
+        public List<int> AssignedSubjects { get; set; }
+    }
 
   public class StudentExcelContainer
   {

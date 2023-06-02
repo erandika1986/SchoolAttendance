@@ -8,5 +8,6 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface IAcademicYearQueryRepository : IQueryRepository<AcademicYear>
     {
+        Task<AcademicYear> GetCurrentAcademicYear(CancellationToken cancellationToken);
     }
 }

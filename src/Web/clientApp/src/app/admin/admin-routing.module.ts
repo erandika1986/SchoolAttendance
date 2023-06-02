@@ -7,6 +7,7 @@ import {GradeComponent} from "./grade/grade.component";
 import { ClassComponent} from "./class/class.component";
 import { ExcelUploadComponent} from "./excel-upload/excel-upload.component";
 import { SubjectComponent } from './subject/subject.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path:'excel-upload',
     component:ExcelUploadComponent
+  },
+  {
+    path:'test',
+    component:TestComponent
   }
 
 ];

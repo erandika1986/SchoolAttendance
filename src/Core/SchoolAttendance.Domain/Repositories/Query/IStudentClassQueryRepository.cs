@@ -8,5 +8,6 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface IStudentClassQueryRepository : IQueryRepository<StudentClass>
     {
+        Task<List<StudentClass>> GetActiveStudentClassesByClassId(int classId, CancellationToken cancellationToken);
     }
 }

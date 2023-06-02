@@ -92,12 +92,14 @@ export class ClassComponent implements OnInit {
   {
     this.classService.getClassList(this.searchText,this.currentPage,this.pageSize,this.academicYearId,this.gradeId)
       .subscribe(response=>{
+        this.loading = false;
         this.data= response.data;
         this.totalRecord= response.totalRecordCount;
-        this.loading = false;
+
         this.spinner.hide();
       },error=>{
         this.spinner.hide();
+        this.loading = false;
       });
   }
 

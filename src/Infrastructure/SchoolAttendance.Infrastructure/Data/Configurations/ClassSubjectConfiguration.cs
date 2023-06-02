@@ -37,7 +37,8 @@ namespace SchoolAttendance.Infrastructure.Data.Configurations
             builder.HasOne(d => d.SubjectTeacher)
                 .WithMany(p => p.ClassSubjects)
                 .HasForeignKey(d => d.SubjectTeacherId)
-                .HasConstraintName("FK_ClassSubject_User");
+                .HasConstraintName("FK_ClassSubject_User")
+                .IsRequired(false);
         }
     }
 }

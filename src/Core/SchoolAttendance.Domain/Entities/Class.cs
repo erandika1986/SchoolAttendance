@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class Class
+    public  class Class : BaseEntity
     {
         public Class()
         {
@@ -19,7 +19,6 @@ namespace SchoolAttendance.Domain.Entities
             SubjectAttendances = new HashSet<SubjectAttendance>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public int ClassTeacherId { get; set; }
         public int GradeId { get; set; }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class Lesson
+    public  class Lesson : BaseAuditableEntity
     {
         public Lesson()
         {
@@ -17,7 +17,7 @@ namespace SchoolAttendance.Domain.Entities
             LessonUnitTests = new HashSet<LessonUnitTest>();
         }
 
-        public int Id { get; set; }
+
         public string Name { get; set; }
         public string LessonIntroduction { get; set; }
         public decimal? Duration { get; set; }
@@ -30,11 +30,6 @@ namespace SchoolAttendance.Domain.Entities
         public int Status { get; set; }
         public string TeachingProcess { get; set; }
         public bool HasLessonTest { get; set; }
-        public bool IsActive { get; set; }
-        public int CreatedById { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public int UpdatedById { get; set; }
-        public DateTime UpdatedOn { get; set; }
 
         public virtual AcademicYear AcademicYear { get; set; }
         public virtual User CreatedBy { get; set; }

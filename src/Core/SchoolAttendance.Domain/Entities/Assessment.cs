@@ -29,7 +29,6 @@ namespace SchoolAttendance.Domain.Entities
         public int? ApprovedBy { get; set; }
         public DateTime? PublishedOn { get; set; }
         public DateTime CompletedOn { get; set; }
-        public bool IsActive { get; set; }
 
 
         public virtual AcademicYear AcademicYear { get; set; }

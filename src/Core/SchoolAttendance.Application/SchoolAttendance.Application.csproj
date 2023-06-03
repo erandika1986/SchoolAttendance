@@ -29,7 +29,6 @@
     <Folder Include="Pipelines\Class\" />
     <Folder Include="Pipelines\CoreData\" />
     <Folder Include="Pipelines\DropDown\" />
-    <Folder Include="Pipelines\LessonDesign\" />
     <Folder Include="Pipelines\StudentSubject\" />
     <Folder Include="Pipelines\StudentSubjectScore\" />
     <Folder Include="Pipelines\Report\" />

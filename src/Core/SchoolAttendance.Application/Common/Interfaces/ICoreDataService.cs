@@ -10,8 +10,8 @@ namespace SchoolAttendance.Application.Common.Interfaces
 {
     public interface ICoreDataService
     {
-        User GetLoggedInUserByUserName(string userName);
-        User GetLoggedInUserByUserId(int id);
-        AcademicYear GetCurrentAcademicYear();
+        //User GetLoggedInUserByUserName(string userName);
+        //User GetLoggedInUserByUserId(int id);
+        //AcademicYear GetCurrentAcademicYear();
     }
 }

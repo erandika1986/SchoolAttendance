@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class AssessmentStructuredQuestionStudentAnswer
+    public class AssessmentStructuredQuestionStudentAnswer : BaseEntity
     {
-        public int Id { get; set; }
         public int AssessmentSectionStudentQuestionId { get; set; }
         public int StructuredQuestionId { get; set; }
         public string AnswerText { get; set; }

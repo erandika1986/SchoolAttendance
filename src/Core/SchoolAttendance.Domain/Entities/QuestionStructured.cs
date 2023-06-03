@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class QuestionStructured
+    public  class QuestionStructured : BaseEntity
     {
         public QuestionStructured()
         {
@@ -13,7 +13,6 @@ namespace SchoolAttendance.Domain.Entities
             QuestionTructuredTeacherAnswers = new HashSet<QuestionStructuredTeacherAnswer>();
         }
 
-        public int Id { get; set; }
         public int QuestionId { get; set; }
         public string QuestionText { get; set; }
         public string QuestionTextRt { get; set; }

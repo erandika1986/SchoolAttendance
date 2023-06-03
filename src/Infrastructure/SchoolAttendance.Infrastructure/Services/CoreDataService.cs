@@ -21,24 +21,24 @@ namespace SchoolAttendance.Infrastructure.Services
             this.logger = logger;
         }
 
-        public AcademicYear GetCurrentAcademicYear()
-        {
-            return db.AcademicYears.FirstOrDefault(x => x.IsCurrentYear == true);
-        }
+        //public AcademicYear GetCurrentAcademicYear()
+        //{
+        //    return db.AcademicYears.FirstOrDefault(x => x.IsCurrentYear == true);
+        //}
 
-        public User GetLoggedInUserByUserId(int id)
-        {
-            var user = db.Users.FirstOrDefault(t => t.Id == id);
+        //public User GetLoggedInUserByUserId(int id)
+        //{
+        //    var user = db.Users.FirstOrDefault(t => t.Id == id);
 
-            return user;
-        }
+        //    return user;
+        //}
 
-        public User GetLoggedInUserByUserName(string userName)
-        {
-            var user = db.Users.FirstOrDefault(t => t.Username.ToLower() == userName.ToLower());
+        //public User GetLoggedInUserByUserName(string userName)
+        //{
+        //    var user = db.Users.FirstOrDefault(t => t.Username.ToLower() == userName.ToLower());
 
-            return user;
-        }
+        //    return user;
+        //}
 
 
 

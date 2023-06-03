@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class AcademicYear
+    public class AcademicYear : BaseEntity
     {
         public AcademicYear()
         {
@@ -16,7 +16,6 @@ namespace SchoolAttendance.Domain.Entities
             Questions = new HashSet<Question>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsCurrentYear { get; set; }
 

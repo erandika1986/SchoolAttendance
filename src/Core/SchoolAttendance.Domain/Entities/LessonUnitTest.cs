@@ -5,14 +5,13 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class LessonUnitTest
+    public  class LessonUnitTest : BaseEntity
     {
         public LessonUnitTest()
         {
             LessonUnitTestTopics = new HashSet<LessonUnitTestTopic>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string StudentGuide { get; set; }
         public int LessonId { get; set; }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class AssessmentMcqquestionStudentAnswer
+    public class AssessmentMcqquestionStudentAnswer :  BaseEntity
     {
-        public int Id { get; set; }
         public int AssessmentSectionStudentQuestionId { get; set; }
         public int TeacherAnswerId { get; set; }
         public bool IsSelected { get; set; }

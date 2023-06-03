@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class ClassSubjectTimeTable
+    public class ClassSubjectTimeTable : BaseEntity
     {
         public ClassSubjectTimeTable()
         {
             SubjectAttendances = new HashSet<SubjectAttendance>();
         }
 
-        public int Id { get; set; }
         public int ClassId { get; set; }
         public int SubjectId { get; set; }
         public int DayId { get; set; }

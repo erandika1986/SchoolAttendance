@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class Grade
+    public class Grade : BaseEntity
     {
         public Grade()
         {
@@ -17,7 +17,6 @@ namespace SchoolAttendance.Domain.Entities
             Questions = new HashSet<Question>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public int? LevelHeadId { get; set; }
         public bool IsActive { get; set; }

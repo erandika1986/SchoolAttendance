@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class LessonUnitTestTopicStudentQuestion
+    public  class LessonUnitTestTopicStudentQuestion : BaseEntity
     {
         public LessonUnitTestTopicStudentQuestion()
         {
@@ -13,7 +13,6 @@ namespace SchoolAttendance.Domain.Entities
             LessonUnitTestTopicStudentOpenEndedQuestionAnswers = new HashSet<LessonUnitTestTopicStudentOpenEndedQuestionAnswer>();
         }
 
-        public int Id { get; set; }
         public int LessonUnitTestTopicQuestionId { get; set; }
         public int StudentId { get; set; }
         public bool? IsCorrect { get; set; }

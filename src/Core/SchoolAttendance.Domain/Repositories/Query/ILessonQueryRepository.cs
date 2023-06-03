@@ -8,5 +8,6 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface ILessonQueryRepository : IQueryRepository<Lesson>
     {
+        IOrderedQueryable<Lesson> GetLessonsByOwnerId(int ownerId);
     }
 }

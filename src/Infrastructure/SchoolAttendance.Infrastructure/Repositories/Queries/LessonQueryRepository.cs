@@ -17,5 +17,15 @@ namespace SchoolAttendance.Infrastructure.Repositories.Queries
         {
             
         }
+
+        public  IOrderedQueryable<Lesson> GetLessonsByOwnerId(int ownerId)
+        {
+            var query = _context
+                .Lessons.Where(x => x.LessonOwnerId == ownerId)
+                .OrderByDescending(x => x.CreatedOn);
+
+            return query;
+
+        }
     }
 }

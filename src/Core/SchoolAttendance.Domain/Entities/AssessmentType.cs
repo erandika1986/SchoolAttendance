@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class AssessmentType
+    public class AssessmentType : BaseEntity
     {
         public AssessmentType()
         {
             Assessments = new HashSet<Assessment>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public AssessmentLevel? AssessmentLevel { get; set; }
 

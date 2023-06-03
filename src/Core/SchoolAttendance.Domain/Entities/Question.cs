@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class Question
+    public  class Question : BaseEntity
     {
         public Question()
         {
@@ -16,7 +16,6 @@ namespace SchoolAttendance.Domain.Entities
             QuestionStructureds = new HashSet<QuestionStructured>();
         }
 
-        public int Id { get; set; }
         public string Question1 { get; set; }
         public string QuestionRt { get; set; }
         public int QuestionTypeId { get; set; }

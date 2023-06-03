@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class AssessmentSectionStudentQuestion
+    public class AssessmentSectionStudentQuestion : BaseEntity
     {
         public AssessmentSectionStudentQuestion()
         {
@@ -15,7 +15,6 @@ namespace SchoolAttendance.Domain.Entities
             AssessmentStructuredQuestionStudentAnswers = new HashSet<AssessmentStructuredQuestionStudentAnswer>();
         }
 
-        public int Id { get; set; }
         public int AssessmentSectionQuestionId { get; set; }
         public int StudentId { get; set; }
         public bool? IsCorrect { get; set; }

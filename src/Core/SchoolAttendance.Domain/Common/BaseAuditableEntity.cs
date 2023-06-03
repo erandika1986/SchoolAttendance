@@ -12,5 +12,6 @@ namespace SchoolAttendance.Domain.Common
         public int? CreatedById { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public int? UpdatedById { get; set; }
+        public bool IsActive { get; set; }
     }
 }

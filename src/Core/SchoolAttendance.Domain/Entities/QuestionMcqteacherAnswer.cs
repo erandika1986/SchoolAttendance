@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class QuestionMcqteacherAnswer
+    public  class QuestionMcqteacherAnswer : BaseEntity
     {
         public QuestionMcqteacherAnswer()
         {
@@ -13,7 +13,6 @@ namespace SchoolAttendance.Domain.Entities
             LessonUnitTestTopicStudentMcqquestionAnswers = new HashSet<LessonUnitTestTopicStudentMcqquestionAnswer>();
         }
 
-        public int Id { get; set; }
         public int QuestionId { get; set; }
         public string AnswerText { get; set; }
         public string AnswerTextRt { get; set; }

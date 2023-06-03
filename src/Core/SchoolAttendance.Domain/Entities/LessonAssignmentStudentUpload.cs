@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class LessonAssignmentStudentUpload
+    public  class LessonAssignmentStudentUpload : BaseEntity
     {
-        public int Id { get; set; }
         public int LessonAssignmentStudentId { get; set; }
         public string UploadFilePath { get; set; }
         public DateTime UploadedOn { get; set; }

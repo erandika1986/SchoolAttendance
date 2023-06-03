@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class Day
+    public class Day : BaseEntity
     {
         public Day()
         {
             ClassSubjectTimeTables = new HashSet<ClassSubjectTimeTable>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<ClassSubjectTimeTable> ClassSubjectTimeTables { get; set; }

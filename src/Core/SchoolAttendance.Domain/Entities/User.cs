@@ -43,7 +43,6 @@ namespace SchoolAttendance.Domain.Entities
         public string Password { get; set; }
         public string? EmailConfirmationCode { get; set; }
         public DateTime? LastLoggedOn { get; set; }
-        public bool IsActive { get; set; }
 
         public virtual ICollection<Assessment> AssessmentApprovedByNavigations { get; set; }
         public virtual ICollection<AssessmentClassStudent> AssessmentClassStudents { get; set; }

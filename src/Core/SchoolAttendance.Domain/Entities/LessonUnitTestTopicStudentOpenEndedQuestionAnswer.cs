@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public  class LessonUnitTestTopicStudentOpenEndedQuestionAnswer
+    public  class LessonUnitTestTopicStudentOpenEndedQuestionAnswer : BaseEntity
     {
-        public int Id { get; set; }
         public int LessonUnitTestTopicStudentQuestionId { get; set; }
         public string Answer { get; set; }
         public string AnswerRt { get; set; }

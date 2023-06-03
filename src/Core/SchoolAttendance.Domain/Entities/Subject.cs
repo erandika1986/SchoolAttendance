@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SchoolAttendance.Domain.Entities
 {
-    public class Subject
+    public class Subject : BaseEntity
     {
         public Subject()
         {
@@ -20,7 +20,6 @@ namespace SchoolAttendance.Domain.Entities
             SubjectTeachers = new HashSet<SubjectTeacher>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Medium { get; set; }

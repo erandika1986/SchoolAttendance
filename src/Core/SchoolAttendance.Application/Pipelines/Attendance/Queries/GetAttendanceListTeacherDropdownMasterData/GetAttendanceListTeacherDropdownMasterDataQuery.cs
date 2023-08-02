@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicLevels;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicYears;
 using SchoolAttendance.Application.Responses;
 using SchoolAttendance.Domain.Enums;
 using SchoolAttendance.Domain.Repositories.Query;
@@ -20,16 +22,17 @@ namespace SchoolAttendance.Application.Pipelines.Attendance.Queries.GetAttendanc
         private readonly IUserQueryRepository _userQueryRepository;
         private readonly IAcademicYearQueryRepository _academicYearQueryRepository;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDropDownService _dropDownService;
+        private readonly IMediator _mediator;
         public GetAttendanceListTeacherDropdownMasterDataQueryHandler(
             IUserQueryRepository userQueryRepository, 
             IAcademicYearQueryRepository academicYearQueryRepository,
-            ICurrentUserService currentUserService,IDropDownService dropDownService)
+            ICurrentUserService currentUserService,
+            IMediator mediator)
         {
             this._userQueryRepository = userQueryRepository;
             this._academicYearQueryRepository = academicYearQueryRepository;
             this._currentUserService = currentUserService;
-            this._dropDownService = dropDownService;
+            this._mediator = mediator;
 
         }
 
@@ -43,7 +46,9 @@ namespace SchoolAttendance.Application.Pipelines.Attendance.Queries.GetAttendanc
 
             if (roles.Contains((int)SystemRole.Admin) || roles.Contains((int)SystemRole.Principle) || roles.Contains((int)SystemRole.VicePrinciple) || roles.Contains((int)SystemRole.DepartmentHead))
             {
-                respones.Grades.AddRange(_dropDownService.GetAllAcademicLevels());
+                var academicLevels = await _mediator.Send(new GetAllAcademicLevelsQuery());
+
+                respones.Grades.AddRange(academicLevels);
 
             }
             else if (roles.Contains((int)SystemRole.LevelHead) || roles.Contains((int)SystemRole.Teacher))
@@ -71,7 +76,8 @@ namespace SchoolAttendance.Application.Pipelines.Attendance.Queries.GetAttendanc
                 respones.SelectedGradeId = (int)respones.Grades.FirstOrDefault().Id;
             }
 
-            respones.AcademicYears.AddRange(_dropDownService.GetAllAcademicYears());
+            var academicYears = await _mediator.Send(new GetAllAcademicYearsQuery());
+            respones.AcademicYears.AddRange(academicYears);
 
             respones.CurrentAcademicYear = (await _academicYearQueryRepository.GetCurrentAcademicYear(cancellationToken)).Id ;
 

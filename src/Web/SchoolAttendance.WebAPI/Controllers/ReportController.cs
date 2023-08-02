@@ -34,10 +34,10 @@ namespace SchoolAttendance.WebAPI.Controllers
     [HttpGet]
     [Authorize]
     [Route("getTeacherClassMasterData")]
-    public ClassTeacheeDropDownMasterData GetTeacherClassMasterData()
+    public async Task<ClassTeacheeDropDownMasterData> GetTeacherClassMasterData()
     {
       var userName = identityService.GetUserName();
-      var response = reportService.GetTeacherClassMasterData(userName);
+      var response = await reportService.GetTeacherClassMasterData();
 
       return response;
     }

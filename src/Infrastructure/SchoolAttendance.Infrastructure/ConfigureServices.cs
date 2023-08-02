@@ -51,14 +51,16 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<IClassSubjectTimeTableQueryRepository, ClassSubjectTimeTableQueryRepository>();
 
 
+            services.AddTransient<IGradeQueryRepository, GradeQueryRepository>();
+            services.AddTransient<IGradeCommandRepository, GradeCommandRepository>();
+
+
 
             services.AddTransient<IAssessmentService, AssessmentService>();
             services.AddTransient<IAttendanceService, AttendanceService>();
             services.AddTransient<IAzureBlobService, AzureBlobService>();
             services.AddTransient<IClassService, ClassService>();
             services.AddTransient<ICoreDataService, CoreDataService>();
-            //services.AddTransient<ICurrentUserService, CurrentUserService>();
-            services.AddTransient<IDropDownService, DropDownService>();
             services.AddTransient<IGradeService, GradeService>();
             services.AddTransient<ILessonDesignService, LessonDesignService>();
             services.AddTransient<IReportService, ReportService>();

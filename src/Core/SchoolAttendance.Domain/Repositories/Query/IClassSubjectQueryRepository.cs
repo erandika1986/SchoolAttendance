@@ -8,5 +8,6 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface IClassSubjectQueryRepository : IQueryRepository<ClassSubject>
     {
+        Task<List<ClassSubject>> GetClassForSelectedSubjectTeacher(int academicYear, int subjectTeacher, CancellationToken cancellationToken);
     }
 }

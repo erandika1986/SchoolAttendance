@@ -1,4 +1,5 @@
-﻿using SchoolAttendance.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolAttendance.Domain.Entities;
 using SchoolAttendance.Domain.Repositories.Query;
 using SchoolAttendance.Infrastructure.Data;
 using SchoolAttendance.Infrastructure.Repositories.Queries.Base;
@@ -17,6 +18,16 @@ namespace SchoolAttendance.Infrastructure.Repositories.Queries
             : base(context)
         {
             
+        }
+
+        public async Task<List<Class>> GetClassesForSelectedGrade(int academicYearId, int gradeId, CancellationToken cancellationToken)
+        {
+            var classes = await _context
+                .Classes
+                .Where(x => x.GradeId == gradeId && x.AcademicYear == academicYearId && x.Grade.IsActive == true)
+                .ToListAsync(cancellationToken); 
+
+            return classes;
         }
     }
 }

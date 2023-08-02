@@ -1,9 +1,26 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicLevels;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicYears;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllDepartmentHeads;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllLevelHeads;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllSubjects;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllSystemRoles;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllTeachers;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAssignedClassForLoggedInUser;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAssignedClassForTeacher;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAssignedClassSubjectForLoggedInUser;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAssignedClassSubjectForTeacher;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetClassesForSelectedGrade;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetSubjectClasses;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetTeacherAssignedSubject;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetTeacherAssignedSubjectForSelectedGrade;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetTeachGradesForLoggedInUser;
 using SchoolAttendance.Application.Responses;
 using System;
 using System.Collections.Generic;
@@ -12,180 +29,172 @@ using System.Threading.Tasks;
 
 namespace SchoolAttendance.WebAPI.Controllers
 {
-  [Authorize]
-  [Route("api/[controller]")]
-  [ApiController]
-  public class DropDownController : ControllerBase
-  {
-    private readonly ILogger<DropDownController> logger;
-    private readonly IConfiguration config;
-    private readonly IIdentityService identityService;
-    private readonly IDropDownService dropDownService;
-
-    public DropDownController(ILogger<DropDownController> logger, IConfiguration config, IIdentityService identityService, IDropDownService dropDownService)
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DropDownController : ControllerBase
     {
-      this.logger = logger;
-      this.config = config;
-      this.identityService = identityService;
-      this.dropDownService = dropDownService;
+        private readonly ILogger<DropDownController> logger;
+        private readonly IConfiguration config;
+        private readonly IIdentityService identityService;
+        private readonly IMediator _mediator;
+
+        public DropDownController(
+            ILogger<DropDownController> logger,
+            IConfiguration config,
+            IIdentityService identityService,
+            IMediator mediator)
+        {
+            this.logger = logger;
+            this.config = config;
+            this.identityService = identityService;
+            this._mediator = mediator;
+        }
+
+        [HttpGet]
+        [Route("getAllAcademicLevels")]
+        public async Task<IActionResult> GetAllAcademicLevels()
+        {
+            var response = await _mediator.Send(new GetAllAcademicLevelsQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllAcademicYears")]
+        public async Task<IActionResult> GetAllAcademicYears()
+        {
+            var response = await _mediator.Send(new GetAllAcademicYearsQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getClassesForSelectedGrade/{academicYearId}/{gradeId}")]
+        public async Task<IActionResult> GetClassesForSelectedGrade(int academicYearId, int gradeId)
+        {
+            var response = await _mediator.Send(new GetClassesForSelectedGradeQuery(academicYearId, gradeId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getTeachGradesForLoggedInUser/{academicYear}")]
+        public async Task<IActionResult> GetTeachGradesForLoggedInUser(int academicYear)
+        {
+            var response = await _mediator.Send(new GetTeachGradesForLoggedInUserQuery(academicYear));
+
+            return Ok(response);
+        }
+
+
+        [HttpGet]
+        [Route("getAssignedClassForLoggedInUser/{academicYear}/{gradeId}")]
+        public async Task<IActionResult> GetAssignedClassForLoggedInUser(int academicYear, int gradeId)
+        {
+            var response = await _mediator.Send(new GetAssignedClassForLoggedInUserQuery(academicYear, gradeId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAssignedClassSubjectForLoggedInUser/{classId}")]
+        public async Task<IActionResult> GetAssignedClassSubjectForLoggedInUser(int classId)
+        {
+            var response = await _mediator.Send(new GetAssignedClassSubjectForLoggedInUserQuery(classId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getSubjectClasses/{gradeId}/{subjectId}/{lessonId}")]
+        public async Task<IActionResult> GetSubjectClasses(int gradeId, int subjectId, int lessonId)
+        {
+            var response = await _mediator.Send(new GetSubjectClassesQuery(gradeId, subjectId, lessonId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAssignedClassForTeacher/{academicYear}/{gradeId}/{teacherId}")]
+        public async Task<IActionResult> GetAssignedClassForTeacher(int academicYear, int gradeId, int teacherId)
+        {
+            var response = await _mediator.Send(new GetAssignedClassForTeacherQuery(academicYear, gradeId, teacherId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAssignedClassSubjectForTeacher/{classId}/{teacherId}")]
+        public async Task<IActionResult> GetAssignedClassSubjectForTeacher(int classId, int teacherId)
+        {
+            var response = await _mediator.Send(new GetAssignedClassSubjectForTeacherQuery(classId, teacherId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getTeacherAssignedSubjectForSelectedGrade/{gradeId}")]
+        public async Task<IActionResult> GetTeacherAssignedSubjectForSelectedGrade(int gradeId)
+        {
+            var response =await _mediator.Send(new GetTeacherAssignedSubjectForSelectedGradeQuery(gradeId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getTeacherAssignedSubject/{gradeId}")]
+        public async Task<IActionResult> GetTeacherAssignedSubject(int gradeId)
+        {
+            var response = await _mediator.Send(new GetTeacherAssignedSubjectQuery(gradeId));
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllSubjects")]
+        public async Task<IActionResult> GetAllSubjects()
+        {
+            var response = await _mediator.Send(new GetAllSubjectsQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllTeachers")]
+        public async Task<IActionResult> GetAllTeachers()
+        {
+            var response = await _mediator.Send(new GetAllTeachersQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllLevelHeads")]
+        public async Task<IActionResult> GetAllLevelHeads()
+        {
+            var response = await _mediator.Send(new GetAllLevelHeadsQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllDepartmentHeads")]
+        public async Task<IActionResult> GetAllDepartmentHeads()
+        {
+            var response = await _mediator.Send(new GetAllDepartmentHeadsQuery());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("getAllSystemRoles")]
+        public async Task<IActionResult> GetAllSystemRoles()
+        {
+            var response = await _mediator.Send(new GetAllSystemRolesQuery());
+
+            return Ok(response);
+        }
+
     }
-
-    [HttpGet]
-    [Route("getAllAcademicLevels")]
-    public List<DropDownViewModel> GetAllAcademicLevels()
-    {
-      var response = dropDownService.GetAllAcademicLevels();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllAcademicYears")]
-    public List<DropDownViewModel> GetAllAcademicYears()
-    {
-      var response = dropDownService.GetAllAcademicYears();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getClassesForSelectedGrade/{academicYearId}/{gradeId}")]
-    public List<DropDownViewModel> GetClassesForSelectedGrade(int academicYearId, int gradeId)
-    {
-      var response = dropDownService.GetClassesForSelectedGrade(academicYearId,gradeId);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getTeachGradesForLoggedInUser/{academicYear}")]
-    public List<DropDownViewModel> GetTeachGradesForLoggedInUser(int academicYear)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetTeachGradesForLoggedInUser(academicYear, userName);
-
-      return response;
-    }
-
-
-    [HttpGet]
-    [Route("getAssignedClassForLoggedInUser/{academicYear}/{gradeId}")]
-    public List<DropDownViewModel> GetAssignedClassForLoggedInUser(int academicYear, int gradeId)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetAssignedClassForLoggedInUser(academicYear, gradeId, userName);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAssignedClassSubjectForLoggedInUser/{classId}")]
-    public List<DropDownViewModel> GetAssignedClassSubjectForLoggedInUser(int classId)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetAssignedClassSubjectForLoggedInUser(classId, userName);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getSubjectClasses/{gradeId}/{subjectId}/{lessonId}")]
-    public List<DropDownViewModel> GetSubjectClasses(int gradeId,int subjectId, int lessonId)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetSubjectClasses(gradeId, subjectId,lessonId, userName);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAssignedClassForTeacher/{academicYear}/{gradeId}/{teacherId}")]
-    public List<DropDownViewModel> GetAssignedClassForTeacher(int academicYear, int gradeId, int teacherId)
-    {
-      var response = dropDownService.GetAssignedClassForTeacher(academicYear, gradeId, teacherId);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAssignedClassSubjectForTeacher/{classId}/{teacherId}")]
-    public List<DropDownViewModel> GetAssignedClassSubjectForTeacher(int classId, int teacherId)
-    {
-      var response = dropDownService.GetAssignedClassSubjectForTeacher(classId, teacherId);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getTeacherAssignedSubjectForSelectedGrade/{gradeId}")]
-    public List<DropDownViewModel> GetTeacherAssignedSubjectForSelectedGrade(int gradeId)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetTeacherAssignedSubjectForSelectedGrade(gradeId, userName);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getTeacherAssignedSubject/{gradeId}")]
-    public List<DropDownViewModel> GetTeacherAssignedSubject(int gradeId)
-    {
-      var userName = identityService.GetUserName();
-
-      var response = dropDownService.GetTeacherAssignedSubject(gradeId, userName);
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllSubjects")]
-    public List<CheckBoxViewModel> GetAllSubjects()
-    {
-      var response = dropDownService.GetAllSubjects();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllTeachers")]
-    public List<DropDownViewModel> GetAllTeachers()
-    {
-      var response = dropDownService.GetAllTeachers();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllLevelHeads")]
-    public List<DropDownViewModel> GetAllLevelHeads()
-    {
-      var response = dropDownService.GetAllLevelHeads();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllDepartmentHeads")]
-    public List<DropDownViewModel> GetAllDepartmentHeads()
-    {
-      var response = dropDownService.GetAllDepartmentHeads();
-
-      return response;
-    }
-
-    [HttpGet]
-    [Route("getAllSystemRoles")]
-    public List<DropDownViewModel> GetAllSystemRoles()
-    {
-      var response = dropDownService.GetAllSystemRoles();
-
-      return response;
-    }
-
-  }
 }

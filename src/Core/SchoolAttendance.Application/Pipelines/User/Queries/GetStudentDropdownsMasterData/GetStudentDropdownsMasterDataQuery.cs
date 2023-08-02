@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicLevels;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetAllAcademicYears;
 using SchoolAttendance.Application.Responses;
+using SchoolAttendance.Domain.Entities;
 using SchoolAttendance.Domain.Repositories.Query;
 using System;
 using System.Collections.Generic;
@@ -16,15 +19,16 @@ namespace SchoolAttendance.Application.Pipelines.User.Queries.GetStudentDropdown
 
     public class GetStudentDropdownsMasterDataQueryHandler : IRequestHandler<GetStudentDropdownsMasterDataQuery, StudentListDropDownMasterData>
     {
-        private readonly IDropDownService _dropDownService;
         private readonly IAcademicYearQueryRepository _academicYearQueryRepository;
+        private readonly IMediator _mediator;
 
         public GetStudentDropdownsMasterDataQueryHandler(
-            IDropDownService dropDownService,
-            IAcademicYearQueryRepository academicYearQueryRepository)
+            IAcademicYearQueryRepository academicYearQueryRepository,
+            IMediator mediator)
         {
-            this._dropDownService = dropDownService;
             this._academicYearQueryRepository = academicYearQueryRepository;
+            this._mediator = mediator;
+
         }
 
 
@@ -32,8 +36,11 @@ namespace SchoolAttendance.Application.Pipelines.User.Queries.GetStudentDropdown
         {
             var response = new StudentListDropDownMasterData();
 
-            response.AcademicYears.AddRange(_dropDownService.GetAllAcademicYears());
-            response.Grades.AddRange(_dropDownService.GetAllAcademicLevels());
+            var academicYears = await _mediator.Send(new GetAllAcademicYearsQuery());
+            var academicLevels = await _mediator.Send(new GetAllAcademicLevelsQuery());
+
+            response.AcademicYears.AddRange(academicYears);
+            response.Grades.AddRange(academicLevels);
             response.CurrentAcademicYear = (await _academicYearQueryRepository.Query(x => x.IsCurrentYear == true)).FirstOrDefault().Id;
             response.SelectedClassId = 0;
             response.SelectedGradeId = 0;

@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.User.Queries.GetUserByUsername;
 using SchoolAttendance.Application.Responses;
 using System;
 using System.Collections.Generic;
@@ -23,25 +25,27 @@ namespace SchoolAttendance.WebAPI.Controllers
         private readonly ILogger<AuthController> logger;
         private readonly IConfiguration config;
         private readonly ICoreDataService coreDataService;
+        private readonly IMediator _mediator;
 
-        public AuthController(ILogger<AuthController> logger, IConfiguration config, ICoreDataService coreDataService)
+        public AuthController(ILogger<AuthController> logger, IConfiguration config, ICoreDataService coreDataService, IMediator mediator)
         {
             this.logger = logger;
             this.config = config;
             this.coreDataService = coreDataService;
+            this._mediator = mediator;
         }
 
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             if (model == null)
             {
                 return Unauthorized(new { ErrorMessage = "Login failed.Please enter your password and username." });
             }
 
-            var user = coreDataService.GetLoggedInUserByUserName(model.Username.Trim());
+            var user = await _mediator.Send(new GetUserByUsernameQuery(model.Username.Trim()));
 
             if (user == null)
             {
@@ -54,8 +58,7 @@ namespace SchoolAttendance.WebAPI.Controllers
                 {
                     var test = config["Tokens:Key"];
                     var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Tokens:Key"]));
-                    //var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(comapny.SecretKey.ToString()));
-                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                    var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                     var roles = user.UserRoles.Select(x => x.Role.Name).ToList();
                     var userRoles = string.Join(",", roles);
@@ -73,22 +76,13 @@ namespace SchoolAttendance.WebAPI.Controllers
                     {
                         claims[i + 4] = new Claim(ClaimTypes.Role, roles[i]);
                     }
-                    //var claims = new[]
-                    //{
-                    //              new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-                    //              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    //              new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(), ClaimValueTypes.Integer64),
-                    //              new Claim(JwtRegisteredClaimNames.Aud,"webapp")
-                    //          };
-
-
 
                     var tokenOptions = new JwtSecurityToken(
                         issuer: config["Tokens:Issuer"],
                         claims: claims,
                         notBefore: nowDate,
                         expires: nowDate.AddDays(100),
-                        signingCredentials: signinCredentials
+                        signingCredentials: signingCredentials
 
                     );
 

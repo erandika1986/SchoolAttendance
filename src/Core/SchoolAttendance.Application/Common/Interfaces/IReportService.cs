@@ -10,7 +10,7 @@ namespace SchoolAttendance.Application.Common.Interfaces
 {
   public interface IReportService
   {
-    ClassTeacheeDropDownMasterData GetTeacherClassMasterData(string userName);
+    Task<ClassTeacheeDropDownMasterData> GetTeacherClassMasterData();
     DownloadFileModel DownloadClassAttendanceForAllSubjects(AttendanceReportFilter filter);
     DownloadFileModel DownloadClassAttendanceForSelectedSubject(AttendanceReportFilter filter);
     DownloadFileModel GenerateZonalReportForSelectedClass(AttendanceReportFilter filter);

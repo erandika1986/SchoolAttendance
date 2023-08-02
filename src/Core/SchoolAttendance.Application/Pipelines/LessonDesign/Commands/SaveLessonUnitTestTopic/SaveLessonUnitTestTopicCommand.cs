@@ -76,7 +76,7 @@ namespace SchoolAttendance.Application.Pipelines.LessonDesign.Commands.SaveLesso
 
 
 
-            return vm;
+            return request.Vm;
         }
     }
 }

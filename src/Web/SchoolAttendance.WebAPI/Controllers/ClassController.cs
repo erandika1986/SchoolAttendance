@@ -78,9 +78,9 @@ namespace SchoolAttendance.WebAPI.Controllers
         [Authorize(Roles = AuthorizedRoles.Admin)]
         [HttpGet]
         [Route("getClassMasterData")]
-        public ClassMasterDataViewModel GetClassMasterData()
+        public async Task<ClassMasterDataViewModel> GetClassMasterData()
         {
-            var response = _classService.GetClassMasterData();
+            var response = await _classService.GetClassMasterData();
 
             return response;
         }

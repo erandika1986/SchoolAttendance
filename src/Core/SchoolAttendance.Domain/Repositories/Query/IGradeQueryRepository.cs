@@ -8,5 +8,7 @@ namespace SchoolAttendance.Domain.Repositories.Query
 {
     public interface IGradeQueryRepository : IQueryRepository<Grade>
     {
+        Task<List<Grade>> GetAllActiveGrades(CancellationToken cancellationToken);
+        Task<List<Grade>> GetGradesByLevelHeadId(int levelHeadId, CancellationToken cancellationToken);
     }
 }

@@ -54,7 +54,35 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<IGradeQueryRepository, GradeQueryRepository>();
             services.AddTransient<IGradeCommandRepository, GradeCommandRepository>();
 
+            services.AddTransient<ISubjectQueryRepository, SubjectQueryRepository>();
+            services.AddTransient<ISubjectCommandRepository, SubjectCommandRepository>();
 
+            services.AddTransient<ILessonQueryRepository, LessonQueryRepository>();
+            services.AddTransient<ILessonCommandRepository, LessonCommandRepository>();
+
+            services.AddTransient<ILessonLectureQueryRepository, LessonLectureQueryRepository>();
+            services.AddTransient<ILessonLectureCommandRepository, LessonLectureCommandRepository>();
+
+            services.AddTransient<ILessonUnitTestQueryRepository, LessonUnitTestQueryRepository>();
+            services.AddTransient<ILessonUnitTestCommandRepository, LessonUnitTestCommandRepository>();
+
+            services.AddTransient<ILessonTopicCommandRepository, LessonTopicCommandRepository>();
+            services.AddTransient<ILessonTopicQueryRepository, LessonTopicQueryRepository>();
+
+            services.AddTransient<ILessonUnitTestTopicQueryRepository, LessonUnitTestTopicQueryRepository>();
+            services.AddTransient<ILessonUnitTestTopicCommandRepository, LessonUnitTestTopicCommandRepository>();
+
+            services.AddTransient<IClassSubjectQueryRepository, ClassSubjectQueryRepository>();
+            services.AddTransient<IClassSubjectCommandRepository, ClassSubjectCommandRepository>();
+
+            services.AddTransient<ISubjectAttendanceQueryRepository, SubjectAttendanceQueryRepository>();
+            services.AddTransient<ISubjectAttendanceCommandRepository, SubjectAttendanceCommandRepository>();
+
+            services.AddTransient<IStudentClassQueryRepository, StudentClassQueryRepository>();
+            services.AddTransient<IStudentClassCommandRepository, StudentClassCommandRepository>();
+
+            services.AddTransient<IStudentSubjectAttendanceCommandRepository, StudentSubjectAttendanceCommandRepository>();
+            services.AddTransient<IStudentSubjectAttendanceQueryRepository, StudentSubjectAttendanceQueryRepository>();
 
             services.AddTransient<IAssessmentService, AssessmentService>();
             services.AddTransient<IAttendanceService, AttendanceService>();

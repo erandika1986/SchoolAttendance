@@ -25,6 +25,7 @@ namespace SchoolAttendance.Domain.Entities
         public string Medium { get; set; }
         public int? DepartmentHeadId { get; set; }
         public bool? IsActive { get; set; }
+        public bool IsParentSubject { get; set; }
         public bool IsBasketSubject { get; set; }
         public int? ParentSubjectId { get; set; }
 

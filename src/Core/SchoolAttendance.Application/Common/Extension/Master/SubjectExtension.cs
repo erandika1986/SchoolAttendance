@@ -9,24 +9,36 @@ using System.Threading.Tasks;
 
 namespace System
 {
-  public static class SubjectExtension
-  {
-    public static SubjectViewModel ToVm(this Subject model,SubjectViewModel vm=null)
+    public static class SubjectExtension
     {
-      if(vm==null)
-      {
-        vm = new SubjectViewModel();
-      }
+        public static SubjectViewModel ToVm(this Subject model, SubjectViewModel vm = null)
+        {
+            if (vm == null)
+            {
+                vm = new SubjectViewModel();
+            }
 
-      vm.Id = model.Id;
-      vm.DepartmentHeadId = model.DepartmentHeadId.HasValue ? model.DepartmentHeadId.Value : 0;
-      vm.DepartmentHeadName = model.DepartmentHeadId.HasValue ? model.DepartmentHead.FullName : "";
-      vm.Description = model.Description;
-      vm.Medium = model.Medium;
-      vm.Name = model.Name;
-      vm.AssignedGrades = string.Join(",", model.GradeSubjects.Select(x => x.Grade.Name).ToList());
+            vm.Id = model.Id;
+            vm.DepartmentHeadId = model.DepartmentHeadId.HasValue ? model.DepartmentHeadId.Value : 0;
+            vm.DepartmentHeadName = model.DepartmentHeadId.HasValue ? model.DepartmentHead.FullName : "";
+            vm.Description = model.Description;
+            vm.Medium = model.Medium;
+            vm.Name = model.Name;
+            vm.IsBasketSubject = model.IsBasketSubject;
+            vm.IsParentSubject = model.IsParentSubject;
+            if(vm.IsBasketSubject)
+            {
+                vm.ParentSubjectName = model.ParentSubject.Name;
+                vm.ParentSubjectId = model.ParentSubject.Id;
+            }
+            else
+            {
+                vm.ParentSubjectId = 0;
+            }
 
-      return vm;
+            vm.AssignedGrades = string.Join(",", model.GradeSubjects.Select(x => x.Grade.Name).ToList());
+
+            return vm;
+        }
     }
-  }
 }

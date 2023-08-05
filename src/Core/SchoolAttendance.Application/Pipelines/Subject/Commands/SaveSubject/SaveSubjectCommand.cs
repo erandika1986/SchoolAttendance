@@ -61,6 +61,12 @@ namespace SchoolAttendance.Application.Pipelines.Subject.Commands.SaveSubject
                         Name = request.vm.Name,
                         Description = request.vm.Description,
                         Medium = request.vm.Medium,
+                        IsBasketSubject = request.vm.IsBasketSubject,
+                        IsParentSubject = request.vm.IsParentSubject,
+                        ParentSubjectId = (
+                                            request.vm.IsBasketSubject 
+                                            && request.vm.ParentSubjectId.Value > 0
+                                          ) ? request.vm.ParentSubjectId : null,
                         IsActive = true
                     };
 
@@ -78,6 +84,12 @@ namespace SchoolAttendance.Application.Pipelines.Subject.Commands.SaveSubject
                     subject.Name = request.vm.Name;
                     subject.Description = request.vm.Description;
                     subject.Medium = request.vm.Medium;
+                    subject.IsBasketSubject = request.vm.IsBasketSubject;
+                    subject.IsParentSubject = request.vm.IsParentSubject;
+                    subject.ParentSubjectId = (
+                                            request.vm.IsBasketSubject
+                                            && request.vm.ParentSubjectId.Value > 0
+                                          ) ? request.vm.ParentSubjectId : null;
 
                     if (request.vm.DepartmentHeadId > 0)
                     {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolAttendance.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using SchoolAttendance.Infrastructure.Data;
 namespace SchoolAttendance.Infrastructure.Migrations
 {
     [DbContext(typeof(SchoolAttendanceContext))]
-    partial class SchoolAttendanceContextModelSnapshot : ModelSnapshot
+    [Migration("20230803042022_JobApp00004")]
+    partial class JobApp00004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1360,11 +1363,6 @@ namespace SchoolAttendance.Infrastructure.Migrations
 
                     b.Property<bool>("IsBasketSubject")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsParentSubject")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValueSql("((0))");
 
                     b.Property<string>("Medium")
                         .HasMaxLength(20)

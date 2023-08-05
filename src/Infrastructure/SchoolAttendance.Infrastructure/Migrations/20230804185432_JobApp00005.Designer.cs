@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolAttendance.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using SchoolAttendance.Infrastructure.Data;
 namespace SchoolAttendance.Infrastructure.Migrations
 {
     [DbContext(typeof(SchoolAttendanceContext))]
-    partial class SchoolAttendanceContextModelSnapshot : ModelSnapshot
+    [Migration("20230804185432_JobApp00005")]
+    partial class JobApp00005
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

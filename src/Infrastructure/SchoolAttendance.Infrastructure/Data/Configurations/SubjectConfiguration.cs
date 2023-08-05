@@ -25,6 +25,10 @@ namespace SchoolAttendance.Infrastructure.Data.Configurations
                 .IsRequired()
                 .HasDefaultValueSql("((1))");
 
+            builder.Property(e => e.IsParentSubject)
+                .IsRequired()
+                .HasDefaultValueSql("((0))");
+
             builder.Property(e => e.Medium).HasMaxLength(20);
 
             builder.Property(e => e.Name)

@@ -2,5 +2,7 @@
 Add-Migration JobApp00001 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
 Add-Migration JobApp00002 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
 Add-Migration JobApp00003 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
+Add-Migration JobApp00004 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
+Add-Migration JobApp00005 -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose
 
 Update-Database -Project SchoolAttendance.Infrastructure -StartUp SchoolAttendance.WebAPI -Verbose

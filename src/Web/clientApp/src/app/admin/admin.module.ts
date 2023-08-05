@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminRoutingModule } from './admin-routing.module';
 import { TestComponent } from './test/test.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TestComponent } from './test/test.component';
     FormsModule,
     ReactiveFormsModule,
     MultiSelectModule,
+    CheckboxModule,
     InputSwitchModule,
     TableModule,
     ButtonModule,

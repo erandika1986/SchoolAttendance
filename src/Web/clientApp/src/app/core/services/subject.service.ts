@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ResponseModel } from '../models/common/response.model';
 import { SubjectModel } from "../models/subject/subject.model";
 import { PaginatedSubjectModel } from "../models/subject/paginated.subject.model";
+import { DropDownModel } from '../models/common/drop.down.modal';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class SubjectService {
 
   deleteSubject(id:number): Observable<ResponseModel> {
     return this.httpClient.delete<ResponseModel>(environment.apiUrl +'Subject/deleteSubject/'+ id);
+  }
+
+  getParentSubjects(): Observable<DropDownModel[]> {
+    return this.httpClient.get<DropDownModel[]>(environment.apiUrl +'Subject/getParentSubjects');
   }
 }

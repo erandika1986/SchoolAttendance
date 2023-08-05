@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SchoolAttendance.Application.Common.Interfaces;
+using SchoolAttendance.Application.Pipelines.DropDown.Queries.GetParentSubjects;
 using SchoolAttendance.Application.Pipelines.Subject.Commands.DeleteSubject;
 using SchoolAttendance.Application.Pipelines.Subject.Commands.SaveSubject;
 using SchoolAttendance.Application.Pipelines.Subject.Queries.GetSubjectList;
@@ -38,6 +39,16 @@ namespace SchoolAttendance.WebAPI.Controllers
             var response = await _mediator.Send(new GetSubjectListQuery(searchText, currentPage, pageSize, status));
 
             return response;
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("getParentSubjects")]
+        public async Task<IActionResult> GetParentSubjects()
+        {
+            var response = await _mediator.Send(new GetParentSubjectsQuery());
+
+            return Ok(response);
         }
 
         [Authorize(Roles = AuthorizedRoles.Admin)]

@@ -24,6 +24,7 @@ export class SubjectComponent implements OnInit {
   selectedRowData: SubjectModel;
 
   allTeachers:DropDownModel[]=[];
+  parentSubjects:DropDownModel[] =[];
 
   statuses =[{id:true,name:"Active"},{id:false,name:"Inactive"}];
 
@@ -66,6 +67,9 @@ export class SubjectComponent implements OnInit {
       name : ['', Validators.required],
       description : [''],
       medium : [null, Validators.required],
+      isParentSubject : [null, Validators.required],
+      isBasketSubject : [null, Validators.required],
+      parentSubjectId : [null],
       departmentHeadId  : [null],
     });
   }
@@ -75,10 +79,20 @@ export class SubjectComponent implements OnInit {
     this.dropdownService.getAllDepartmentHeads()
       .subscribe(response=>{
         this.allTeachers = response;
-        this.loadSubject();
+        this.getParentSubject();
       },error=>{
-        this.spinner.hide();
+
       });
+  }
+
+  getParentSubject()
+  {
+    this.subjectService.getParentSubjects().subscribe(response =>{
+      this.parentSubjects = response;
+      this.loadSubject();
+    },error=>{
+      this.spinner.hide();
+    })
   }
 
   filterDatatable(event) {
@@ -149,12 +163,15 @@ export class SubjectComponent implements OnInit {
       // add new record
       addRow(content) {
 
-        this.selectedRowData=null;
+        this.selectedRowData = null;
 
         this.subjectForm.get('id').setValue(0);
-        this.subjectForm.get('name').setValue('');
+        this.subjectForm.get('name').setValue('New Subject');
         this.subjectForm.get('description').setValue(null);
         this.subjectForm.get('medium').setValue(null);
+        this.subjectForm.get('isParentSubject').setValue(false);
+        this.subjectForm.get('isBasketSubject').setValue(false);
+        this.subjectForm.get('parentSubjectId').setValue(0);
         this.subjectForm.get('departmentHeadId').setValue(null);
         this.modalService.open(content, {
           ariaLabelledBy: 'modal-basic-title',
@@ -166,12 +183,24 @@ export class SubjectComponent implements OnInit {
   
     editRow(row:SubjectModel, rowIndex, content) {
   
+      console.log(row);
       this.selectedRowData=row;
       
       this.subjectForm.get('id').setValue(row.id);
       this.subjectForm.get('name').setValue(row.name);
       this.subjectForm.get('description').setValue(row.description);
       this.subjectForm.get('medium').setValue(row.medium);
+      this.subjectForm.get('isBasketSubject').setValue(row.isBasketSubject);
+      this.subjectForm.get('isParentSubject').setValue(row.isParentSubject);
+      if(row.isBasketSubject)
+      {
+        this.subjectForm.get('parentSubjectId').setValue(row.parentSubjectId);
+      }
+      else
+      {
+        this.subjectForm.get('parentSubjectId').setValue(0);
+      }
+
       if(row.departmentHeadId>0)
       {
         this.subjectForm.get('departmentHeadId').setValue(row.departmentHeadId);
@@ -265,8 +294,27 @@ export class SubjectComponent implements OnInit {
         });
       });
   }
+
+  isParentChange(values:any):void {
+    console.log(values.currentTarget.checked);
+  }
+
+  isBasketChange(values:any):void {
+    console.log(values.currentTarget.checked);
+  }
+
   get subjectId()
   {
     return this.subjectForm.get("id").value;
+  }
+
+  get isParentSubject()
+  {
+    return this.subjectForm.get("isParentSubject").value;
+  }
+
+  get isBasketSubject()
+  {
+    return this.subjectForm.get("isBasketSubject").value;
   }
 }

@@ -10,4 +10,8 @@ export class SubjectModel
     departmentHeadName :string;
     departmentHeadId :number;
     assignedGrades :string;
+    isParentSubject:boolean;
+    isBasketSubject:boolean;
+    parentSubjectName:string;
+    parentSubjectId?:number;
 }

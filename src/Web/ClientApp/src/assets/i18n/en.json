@@ -29,6 +29,13 @@
         "ATTENDANCE_REPORT": "Report"
       }
     },
+    "ASSESSMENT": {
+      "TEXT": "Assessments",
+      "LIST": {
+        "ASSESSMENT_LIST": "Assessment List",
+        "ASSESSMENT_RESULTS": "Assessment Results"
+      }
+    },
     "LESSON": {
       "TEXT": "Lessons",
       "LIST": {

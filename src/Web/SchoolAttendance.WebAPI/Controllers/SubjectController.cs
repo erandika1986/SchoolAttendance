@@ -34,11 +34,11 @@ namespace SchoolAttendance.WebAPI.Controllers
         [Authorize(Roles = AuthorizedRoles.Admin)]
         [HttpGet]
         [Route("getSubjectList")]
-        public async Task<PaginatedItemsViewModel<SubjectViewModel>> GetSubjectList(string searchText, int currentPage, int pageSize, bool status)
+        public async Task<IActionResult> GetSubjectList(string searchText, int currentPage, int pageSize, bool status)
         {
             var response = await _mediator.Send(new GetSubjectListQuery(searchText, currentPage, pageSize, status));
 
-            return response;
+            return Ok(response);
         }
 
         [Authorize]
@@ -54,21 +54,21 @@ namespace SchoolAttendance.WebAPI.Controllers
         [Authorize(Roles = AuthorizedRoles.Admin)]
         [HttpPost]
         [Route("saveSubject")]
-        public async Task<ResponseViewModel> SaveSubject(SubjectViewModel vm)
+        public async Task<IActionResult> SaveSubject(SubjectViewModel vm)
         {
             var response = await _mediator.Send(new SaveSubjectCommand(vm));
 
-            return response;
+            return Ok(response); 
         }
 
         [Authorize(Roles = AuthorizedRoles.Admin)]
         [HttpDelete]
         [Route("deleteSubject/{id}")]
-        public async Task<ResponseViewModel> DeleteSubject(int id)
+        public async Task<IActionResult> DeleteSubject(int id)
         {
             var response = await _mediator.Send(new DeleteSubjectCommand(id));
 
-            return response;
+            return Ok(response); 
         }
     }
 }

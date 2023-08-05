@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using SchoolAttendance.Application.Common.Interfaces;
 using SchoolAttendance.Application.Responses;
+using SchoolAttendance.Domain.Repositories.Command;
+using SchoolAttendance.Domain.Repositories.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +18,25 @@ namespace SchoolAttendance.Application.Pipelines.Assessment.Commands.SaveAssessm
 
     public class SaveAssessmentCommandHandler : IRequestHandler<SaveAssessmentCommand, AssessmentViewModel>
     {
-        private readonly IAssessmentService _assessmentService;
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IAssessmentQueryRepository _assessmentQueryRepository;
+        private readonly IAssessmentCommandRepository _assessmentCommandRepository;
 
-        public SaveAssessmentCommandHandler(IAssessmentService assessmentService)
+        public SaveAssessmentCommandHandler(
+            ICurrentUserService currentUserService, 
+            IAssessmentQueryRepository assessmentQueryRepository, 
+            IAssessmentCommandRepository assessmentCommandRepository)
         {
-            _assessmentService = assessmentService;
+            this._currentUserService = currentUserService;
+            this._assessmentQueryRepository = assessmentQueryRepository;
+            this._assessmentCommandRepository = assessmentCommandRepository;
         }
 
         public async Task<AssessmentViewModel> Handle(SaveAssessmentCommand request, CancellationToken cancellationToken)
         {
-            var response = await _assessmentService.SaveAssessment(request.AssessmentVm);
+           
 
-            return response;
+         
         }
     }
 }

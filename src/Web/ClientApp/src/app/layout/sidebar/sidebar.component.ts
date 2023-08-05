@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) {
     this.routerObj = this.router.events.subscribe((event) => {
@@ -71,12 +71,52 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+
+    console.log("XXXXXXXXXXXXXXXXXXXXX");
+    console.log(this.authService.currentUserValue);
+    
     if (this.authService.currentUserValue) {
-      this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
+      this.sidebarItems = ROUTES.filter((sidebarItem) => 
+      {
+        console.log(sidebarItem.title)
+        if(sidebarItem.title === "MENUITEMS.HOME.TEXT")
+        {
+          sidebarItem.isVisible = this.isUserRoleExists('Admin');
+          for (const item of sidebarItem.submenu) {
+            item.isVisible = true;
+					}
+        }
+        else if(sidebarItem.title === "MENUITEMS.ATTENDANCE.TEXT")
+        {
+          sidebarItem.isVisible = this.isUserRoleExists('Admin') ||  this.isUserRoleExists('LevelHead') ||  this.isUserRoleExists('DepartmentHead')||  this.isUserRoleExists('Teacher');
+          for (const item of sidebarItem.submenu) {
+            item.isVisible = true;
+					}
+        }
+        else if(sidebarItem.title === "MENUITEMS.ASSESSMENT.TEXT")
+        {
+          sidebarItem.isVisible = this.isUserRoleExists('Admin') ||  this.isUserRoleExists('Principle') ||  this.isUserRoleExists('VicePrinciple') ||  this.isUserRoleExists('LevelHead') ||  this.isUserRoleExists('DepartmentHead')||  this.isUserRoleExists('Teacher');
+          for (const item of sidebarItem.submenu) {
+            item.isVisible = true;
+					}
+        }
+        return sidebarItem;
+      });
     }
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
   }
+
+  isUserRoleExists(role: string): boolean {
+		for (let index = 0; index < this.authService.currentUserValue.roles.length; index++) {
+			if (this.authService.currentUserValue.roles[index] == role) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
   ngOnDestroy() {
     this.routerObj.unsubscribe();
   }

@@ -20,7 +20,7 @@ namespace SchoolAttendance.Application.Responses
         public AssessmentConductBy? AssessmentConductBy { get; set; }
         public AssessmentStatus Status { get; set; }
         public int? VersionNo { get; set; }
-        public string ApprovedBy { get; set; }
+        public int? ApprovedBy { get; set; }
         public bool IsActive { get; set; }
         public string PublishedOn { get; set; }
         public string CompletedOn { get; set; }

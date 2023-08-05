@@ -69,7 +69,7 @@ namespace SchoolAttendance.WebAPI.Controllers
                         var now = DateTime.UtcNow;
                         DateTime nowDate = DateTime.UtcNow;
                         var claims = new Claim[arrayLength];
-                        claims[0] = new Claim(JwtRegisteredClaimNames.Sub, user.Username);
+                        claims[0] = new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString());
                         claims[1] = new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString());
                         claims[2] = new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(), ClaimValueTypes.Integer64);
                         claims[3] = new Claim(JwtRegisteredClaimNames.Aud, "webapp");
@@ -95,7 +95,7 @@ namespace SchoolAttendance.WebAPI.Controllers
                             FullName = user.FullName,
                             Username = user.Username,
                             ProfilePic = "",
-                            Role = userRoles,
+                            Roles = roles,
                             Gender = user.Gender
                         });
                     }

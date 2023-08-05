@@ -10,6 +10,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
+    isVisible: false,
   },
   {
     path: '',
@@ -20,6 +21,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/admin/teachers',
@@ -31,6 +33,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/admin/students',
@@ -42,6 +45,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/admin/subject',
@@ -53,6 +57,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/admin/grades',
@@ -64,6 +69,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/admin/class',
@@ -75,6 +81,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/admin/excel-upload',
@@ -86,6 +93,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
     ],
   },
@@ -98,6 +106,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/attendance/attendance-list',
@@ -109,6 +118,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/attendance/reports',
@@ -120,6 +130,44 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
+      }
+    ],
+  },
+  {
+    path: '',
+    title: 'MENUITEMS.ASSESSMENT.TEXT',
+    iconType: 'feather',
+    icon: 'monitor',
+    class: 'menu-toggle',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    isVisible: false,
+    submenu: [
+      {
+        path: '/assessment/assessment-list',
+        title: 'MENUITEMS.ASSESSMENT.LIST.ASSESSMENT_LIST',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+        isVisible: false,
+      },
+      {
+        path: '/attendance/reports',
+        title: 'MENUITEMS.ASSESSMENT.LIST.ASSESSMENT_RESULTS',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+        isVisible: false,
       }
     ],
   },
@@ -132,6 +180,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/teacher-lessons/lessons-in-design',
@@ -143,6 +192,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       }
     ],
   },
@@ -156,6 +206,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
+    isVisible: false,
   },
   {
     path: '',
@@ -167,6 +218,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
+    isVisible: false,
   },
   {
     path: '',
@@ -177,6 +229,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/authentication/signin',
@@ -188,6 +241,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/authentication/signup',
@@ -199,6 +253,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/authentication/forgot',
@@ -210,6 +265,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/authentication/reset',
@@ -221,6 +277,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/authentication/page404',
@@ -232,6 +289,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/authentication/page500',
@@ -243,6 +301,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
     ],
   },
@@ -255,6 +314,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/extra-pages/blank',
@@ -266,6 +326,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
     ],
   },
@@ -278,6 +339,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
+    isVisible: false,
     submenu: [
       {
         path: '/multilevel/first1',
@@ -289,6 +351,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
       {
         path: '/',
@@ -299,6 +362,7 @@ export const ROUTES: RouteInfo[] = [
         groupTitle: false,
         badge: '',
         badgeClass: '',
+        isVisible: false,
         submenu: [
           {
             path: '/multilevel/secondlevel/second1',
@@ -310,6 +374,7 @@ export const ROUTES: RouteInfo[] = [
             badge: '',
             badgeClass: '',
             submenu: [],
+            isVisible: false,
           },
           {
             path: '/',
@@ -320,6 +385,7 @@ export const ROUTES: RouteInfo[] = [
             groupTitle: false,
             badge: '',
             badgeClass: '',
+            isVisible: false,
             submenu: [
               {
                 path: '/multilevel/thirdlevel/third1',
@@ -331,6 +397,7 @@ export const ROUTES: RouteInfo[] = [
                 badge: '',
                 badgeClass: '',
                 submenu: [],
+                isVisible: false,
               },
             ],
           },
@@ -346,6 +413,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
+        isVisible: false,
       },
     ],
   },
